@@ -1,13 +1,117 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root{
+  --bgColor: rgb(37, 37, 192);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+body, div, button, input, form, nav {
+  display: flex;
+}
+
+button:hover{
+  filter: brightness(0.8);
+}
+button:active{
+  filter: invert();
+}
+
+body{
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: var(--bgColor);
+  justify-content: center;
+  align-items: center;
+}
+
+#root{
+  flex-direction: column;
+  min-width: 30em;
+  max-width: 40em;
+}
+.flexCol{
+  flex-direction: column;
+}
+.toy{
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 8em;
+  /* max-width: ; */
+  border-radius: 25% 12.5%;
+}
+
+.petElement{
+  flex-direction: column;
+  min-width: 100%;
+  padding: 2em;
+  /* LCD Screen Color */
+  background-color: rgb(192, 196, 192);
+  /* LCD Text Color */
+  color: #111;
+}
+
+.petButton{
+  padding: 1em;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: 24%;
+  border-radius: 50% 25%;
+  box-shadow: 5px 15px 15px rgb(0,0,0,0.5);
+}
+.petButtonContainer{
+  flex-direction: row;
+  min-width: 100%;
+}
+.achievementComponent{ 
+  flex-direction: column;
+  background-color: rgb(255, 255, 255, 0.5);
+  border-radius: 1em;
+  padding: 1em; 
+}
+
+.achievementWrapper {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+
+.achievement {
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(77, 77, 77);
+  color: white;
+  padding: 0em; 
+  border-radius: 0.5em;
+  width: 100%;
+}
+.achievement>div{
+  padding: 0.5em;
+}
+.achievement:hover{
+  filter: brightness(1.2);
+  cursor: crosshair;
+}
+.achievementsList{ 
+  flex-direction: column;
+}
+.achievementMessage{
+  filter: opacity(0);
+  font-family: sans-serif;
+}
+
+.achievement:hover .achievementMessage{
+  filter: opacity(1);
+}
+.achievementHeader{
+  color: #ffbbcc
 }
