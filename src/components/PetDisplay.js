@@ -25,14 +25,19 @@ export const PetDisplay = ({ pet }) => {
 
             <p>
                 <p>Health:</p>
-                <ProgressBar title={`Pet Health ${pet.health}`} value={pet.health} max='100' />
+                <ProgressBar
+                  title={`Pet Health ${pet.health}`}
+                  value={pet.health}
+                  max='100'
+                  color='black' />
             </p>
             <p>
                 <p>Hunger:</p>
                 <ProgressBar
                   title={`Pet Hunger ${pet.hunger}`}
                   value={pet.hunger}
-                  max='100' />
+                  max='100'
+                  color='black' />
                 </p>
             </div>
             <img className={`petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`}/>

@@ -1,6 +1,6 @@
 import { PetDisplay } from './components/PetDisplay'
 import { PetButtons } from './components/PetButtons'
-import { useEffect, useRef, useState, useReducer } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 // custom debug screen
@@ -21,8 +21,7 @@ function App() {
             year: 2000
         },
         health: 100,
-        hunger: 0,
-        happiness: 50,
+        hunger: 100,
         maxHunger: 100,
         maxHealth: 100
     }
@@ -30,7 +29,8 @@ function App() {
 
     const [achievements, updateAchievements] = useState(ACHIEVEMENTS(pet))
 
-    const getAchievement = (key) => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getAchievement = useCallback((key) => {
         if (achievements[key].complete === false) {
             let current = achievements
             current[key] = {
@@ -39,52 +39,58 @@ function App() {
             }
             updateAchievements(current)
         }
+    })
+
+    const tickHunger = (rand) => {
+        if (pet.hunger > 0 & pet.health > 0) {
+            setPet({
+                ...pet,
+                hunger: (pet.hunger - rand) < 0
+                    ? 0
+                    : pet.hunger - rand
+            })
+        }
     }
 
-    useEffect(() => {
-        const tick = setInterval(async () => {
-            let rand = Math.round(Math.random() * 3)
+    const tickHealth = (rand) => {
+        if (pet.health > 0 && pet.hunger === 0) {
+            setPet({
+                ...pet,
+                health: pet.health - rand < 1
+                ? 0
+                : pet.health - rand
+            })
+        }
+    }
+    
+    const tick = () => setInterval(() => {
+        let rand = Math.round(Math.random() * 3)
+        tickHunger(rand)
+            // add achievement
+            (pet.hunger < 50
+                ? pet.hunger < 20
+                    ? getAchievement('hungry') && getAchievement('starve')
+                    : getAchievement('starve')
+                : null)
+        tickHealth(rand)
+        // add achievement
+        if (pet.health === 0) {
+            getAchievement('kill')
+        }
+        if (pet.health - rand > 0 && pet.health <= 10) {
+            getAchievement('nearlyDie')
+        }
+        return () => clearInterval(tick)
+    }, TICKSPEED)
+    
+    useEffect(tick, [tickHunger, tickHealth]);
 
-            if (pet.hunger > 0 & pet.health > 0) {
-                setPet({
-                    ...pet,
-                    hunger: (pet.hunger - rand) < 0
-                        ? 0
-                        : pet.hunger - rand
-                })
+    if (pet.name === '') {
 
-                // add achievement
-                (pet.hunger < 50
-                    ? pet.hunger < 20 
-                        ? getAchievement('hungry') && getAchievement('starve')
-                        : getAchievement('starve')
-                    : null)
-                }
-                
-                else if(pet.health > 0 && pet.hunger === 0){
-                    setPet({
-                        ...pet,
-                        health: pet.health - rand < 1
-                        ? 0
-                        : pet.health - rand
-                    })
-                    // add achievement
-                    if (pet.health - rand === 0) {
-                        getAchievement('kill')
-                    } else if(pet.health - rand > 0 && pet.health <= 10){
-                        getAchievement('nearlyDie')
-                    }
-                }
-            }, TICKSPEED);
-            return () => clearInterval(tick)
-        }, [getAchievement, pet, setPet])
-        
-        if (pet.name === '') {
-            
-            const changeName = () => {
-                setPet({
-                    ...pet,
-                    name: nameInputField.current.value
+        const changeName = () => {
+            setPet({
+                ...pet,
+                name: nameInputField.current.value
             })
         }
         return (
