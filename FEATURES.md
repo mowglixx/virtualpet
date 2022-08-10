@@ -10,7 +10,7 @@ Below is the planned features / Complete parts of the app.
 - [x] Able to Heal the Pet
 - [x] Able to Feed the Pet
 - [x] Able to Play with the Pet
-  - [ ] Playing increases hunger levels
+  - [x] Playing increases hunger levels
     - [ ] Playing decrases health instead when hunger is 0
 - [ ] :poop:
 - [ ] Player has currency
