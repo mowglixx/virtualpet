@@ -41,49 +41,42 @@ function App() {
         }
     })
 
-    const tickHunger = (rand) => {
+
+
+useEffect(() =>{
+    const interval = setInterval(() => {
+        let rand = Math.round(Math.random() * 3)
+
         if (pet.hunger > 0 & pet.health > 0) {
             setPet({
                 ...pet,
-                hunger: (pet.hunger - rand) < 0
-                    ? 0
-                    : pet.hunger - rand
+                hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand
             })
         }
-    }
 
-    const tickHealth = (rand) => {
-        if (pet.health > 0 && pet.hunger === 0) {
+        if (pet.health > 0 && pet.hunger < 1) {
             setPet({
                 ...pet,
-                health: pet.health - rand < 1
-                ? 0
-                : pet.health - rand
+                health: pet.health - rand < 1 ? 0 : pet.health - rand
             })
         }
-    }
-    
-    const tick = () => setInterval(() => {
-        let rand = Math.round(Math.random() * 3)
-        tickHunger(rand)
-            // add achievement
-            (pet.hunger < 50
-                ? pet.hunger < 20
-                    ? getAchievement('hungry') && getAchievement('starve')
-                    : getAchievement('starve')
-                : null)
-        tickHealth(rand)
-        // add achievement
-        if (pet.health === 0) {
+        // add achievements
+        if (pet.health < 1) {
             getAchievement('kill')
         }
         if (pet.health - rand > 0 && pet.health <= 10) {
             getAchievement('nearlyDie')
         }
-        return () => clearInterval(tick)
-    }, TICKSPEED)
-    
-    useEffect(tick);
+        if(pet.hunger < 80){
+            getAchievement('hungry')
+        }
+        if(pet.hunger < 20){
+            getAchievement('starve')
+        }
+    }, TICKSPEED);
+    return () => clearInterval(interval)
+}, [setPet, pet, getAchievement]);
+
 
     if (pet.name === '') {
 
