@@ -1,6 +1,6 @@
 import { PetDisplay } from './components/PetDisplay'
 import { PetButtons } from './components/PetButtons'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, useReducer } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 // custom debug screen
@@ -11,8 +11,9 @@ function App() {
 
     const TICKSPEED = 1000
 
+    const nameInputField = useRef()
     const [pet, setPet] = useState({
-        name: 'Poppy',
+        name: '',
         age: 0,
         birthday: {
             day: 1,
@@ -24,73 +25,111 @@ function App() {
         happiness: 50,
         maxHunger: 100,
         maxHealth: 100
+    }
+    )
 
-    })
     const [achievements, updateAchievements] = useState(ACHIEVEMENTS(pet))
 
     const getAchievement = (key) => {
-        let current = achievements
-        current[key] = {
-            ...current[key],
-            complete: true
+        if (achievements[key].complete === false) {
+            let current = achievements
+            current[key] = {
+                ...current[key],
+                complete: true
+            }
+            updateAchievements(current)
         }
-        updateAchievements(current)
     }
+
     useEffect(() => {
         const tick = setInterval(async () => {
             let rand = Math.round(Math.random() * 3)
 
-            if (pet.hunger < 100 & pet.health > 0) {
+            if (pet.hunger > 0 & pet.health > 0) {
                 setPet({
                     ...pet,
-                    hunger: pet.hunger + rand > 100
-                        ? 100
-                        : pet.hunger + rand
+                    hunger: (pet.hunger - rand) < 0
+                        ? 0
+                        : pet.hunger - rand
                 })
-                getAchievement('hunger')
-                // add achievement
-            }
 
-            else {
-                setPet({
-                    ...pet,
-                    health: pet.health - rand < 1
+                // add achievement
+                (pet.hunger < 50
+                    ? pet.hunger < 20 
+                        ? getAchievement('hungry') && getAchievement('starve')
+                        : getAchievement('starve')
+                    : null)
+                }
+                
+                else if(pet.health > 0 && pet.hunger === 0){
+                    setPet({
+                        ...pet,
+                        health: pet.health - rand < 1
                         ? 0
                         : pet.health - rand
-                })
-                // add achievement
-                getAchievement('healPet')
-            }
-        }, TICKSPEED);
-        return () => clearInterval(tick)
-    })
-
-
-    return (
-        <div className='toy'>
-            <h1 className='petHeader'>Virtual Pet</h1>
-            <div className='layout'>
-                <div className='flexCol'>
-                    <PetDisplay pet={pet} />
-                    <PetButtons
-                        pet={pet}
-                        setPet={setPet}
-                        achievements={achievements}
-                        updateAchievements={updateAchievements} />
-                </div>
-                <div className='flexCol'>
-                    <Achievements
-                        achievements={achievements}
-                        updateAchievements={updateAchievements} 
-                        pet={pet}
-                        getAchievement={getAchievement}  />
-
-                    {/* for debugging vars */}
-                    {/* <Debug achievements={achievements} other={{'key':'value'}}/> */}
+                    })
+                    // add achievement
+                    if (pet.health - rand === 0) {
+                        getAchievement('kill')
+                    } else if(pet.health - rand > 0 && pet.health <= 10){
+                        getAchievement('nearlyDie')
+                    }
+                }
+            }, TICKSPEED);
+            return () => clearInterval(tick)
+        }, [getAchievement, pet, setPet])
+        
+        if (pet.name === '') {
+            
+            const changeName = () => {
+                setPet({
+                    ...pet,
+                    name: nameInputField.current.value
+            })
+        }
+        return (
+            <div className='toy'>
+                <h1 className='petHeader'>Virtual Pet</h1>
+                <div className='layout'>
+                    <div className='flexCol'>
+                        <h2>Please choose your pet's name</h2>
+                        <input
+                            ref={nameInputField}
+                            className='nameInputField' />
+                        <button onClick={changeName}>Set Name</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+    else {
+        return (
+            <div className='toy'>
+                <h1 className='petHeader'>Virtual Pet</h1>
+                <div className='layout'>
+                    <div className='flexCol'>
+                        <PetDisplay pet={pet} />
+                        <PetButtons
+                            pet={pet}
+                            setPet={setPet}
+                            achievements={achievements}
+                            getAchievement={getAchievement} />
+                    </div>
+                    <div className='flexCol'>
+                        <Achievements
+                            achievements={achievements}
+                            updateAchievements={updateAchievements}
+                            pet={pet}
+                            getAchievement={getAchievement} />
+
+                        {/* for debugging vars */}
+                        {/* <Debug achievements={achievements} other={{'key':'value'}}/> */}
+                    </div>
+                </div>
+            </div>
+        );
+
+    }
 }
 
 export default App;

@@ -1,20 +1,20 @@
 
 
 
-export const PetButtons = ({ pet, setPet, achievements, updateAchievements }) => {
+export const PetButtons = ({ pet, setPet, getAchievement }) => {
     const feedPet = () => {
         setPet({
             ...pet,
-            hunger: pet.hunger - 10 < 0 ? 0 : pet.hunger - 10
+            hunger: pet.hunger + 10 > pet.maxHunger ? pet.maxHunger : pet.hunger + 10
         })
-        // updateAchievements([...achievements, {icon: '🍽️', achievement: 'Made a pet hungry', message: `${pet.name} is hungry, great...`}])
-        // updateAchievements([...achievements, {icon: '🥫', achievement: 'Fed your pet', message: 'Well done I guess...'}])
+        getAchievement('feedPet')
     }
     const playPet = () => {
         setPet({
             ...pet,
-            hunger: pet.hunger - 10 < 0 ? 0 : pet.hunger - 10
+            hunger: pet.hunger - 10 < 1 ? 0 : pet.hunger - 10
         })
+        getAchievement('playPet')
         // updateAchievements([...achievements, {icon: '🖐️', achievement: 'Played with your pet', message: 'This one is kinda good king.'}])
     }
     const healPet = () => {
@@ -22,6 +22,7 @@ export const PetButtons = ({ pet, setPet, achievements, updateAchievements }) =>
             ...pet,
             health: pet.health + 10 > 100 ? 100 : pet.health + 10
         })
+        getAchievement('healPet')
         // updateAchievements([...achievements, {icon: '❤️', achievement: 'Healed your pet', message: 'This wouldn\'t have happened if you looked after it in the first place!'}])
     }
 
@@ -30,7 +31,8 @@ export const PetButtons = ({ pet, setPet, achievements, updateAchievements }) =>
             <button
                 className='petButton'
                 onClick={feedPet}
-                disabled={pet.health > 0 ? pet.hunger < 1 ? true : '' : true}
+                // if the pet health is 0 or hunger is 
+                disabled={pet.health > 0 ? pet.hunger === pet.maxHunger ? true : '' : true}
             >Feed
             </button>
             <button
@@ -42,7 +44,7 @@ export const PetButtons = ({ pet, setPet, achievements, updateAchievements }) =>
             <button 
             className='petButton' 
             onClick={healPet} 
-            disabled={pet.health > 0 ? pet.health === 100 ? true : '' : true}>Heal</button>
+            disabled={pet.health > 0 ? pet.health === pet.maxHealth ? true : '' : true}>Heal</button>
         </div>
     )
 }

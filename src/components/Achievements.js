@@ -1,4 +1,4 @@
-// import { useState } from "react"
+import { useState } from "react"
 
 // function to init achievemnts state for App when pet is created
 export const ACHIEVEMENTS = pet => {
@@ -8,24 +8,6 @@ export const ACHIEVEMENTS = pet => {
             achievement: 'Here we go!',
             message: 'You made a Virtual pet, in this economy?!',
             complete: true,
-        },
-        feedPet: {
-            icon: '🥫',
-            achievement: 'Fed your pet',
-            message: 'Well done I guess...',
-            complete: false,
-        },
-        playPet: {
-            icon: '🖐️',
-            achievement: 'Played with your pet',
-            message: 'This one is kinda good king.',
-            complete: false,
-        },
-        healPet: {
-            icon: '❤️',
-            achievement: 'Healed your pet',
-            message: 'This wouldn\'t have happened if you looked after it in the first place!',
-            complete: false,
         },
         hungry: {
             icon: '🍽️',
@@ -50,17 +32,37 @@ export const ACHIEVEMENTS = pet => {
             achievement: 'Kill a pet',
             message: `${pet.name} is dead, it's too late`,
             complete: false,
-        }
+        },
+        feedPet: {
+            icon: '🥫',
+            achievement: 'Fed your pet',
+            message: 'Well done I guess...',
+            complete: false,
+        },
+        playPet: {
+            icon: '🖐️',
+            achievement: 'Played with your pet',
+            message: 'This one is kinda good king.',
+            complete: false,
+        },
+        healPet: {
+            icon: '❤️',
+            achievement: 'Healed your pet',
+            message: 'This wouldn\'t have happened if you looked after it in the first place!',
+            complete: false,
+        },
     }
 }
 
 const Achievement = ({ icon, message, achievement }) => {
 
-    // const [g,gg] = useState(0)
+    const [visable,setVisable] = useState(false)
+
+
 
     return (
         <div className="achievementWrapper">
-            <div className="achievement">
+            <div className="achievement" onClick={() => {setVisable(!visable)}}>
                 <div className="achievementIcon">
                     <h2>{icon}</h2>
                 </div>
@@ -68,9 +70,11 @@ const Achievement = ({ icon, message, achievement }) => {
                     <p className="achievementHeader">
                         {achievement}
                     </p>
-                    <p className="achievementMessage">
-                        {message}
-                    </p>
+                    {visable
+                        ?(<p className="achievementMessage">
+                            {message}
+                        </p>)
+                        :(null)}
                 </div>
             </div>
         </div>
