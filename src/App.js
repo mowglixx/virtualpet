@@ -83,7 +83,7 @@ function App() {
         return () => clearInterval(tick)
     }, TICKSPEED)
     
-    useEffect(tick, [tickHunger, tickHealth]);
+    useEffect(tick);
 
     if (pet.name === '') {
 
