@@ -88,6 +88,7 @@ function App() {
     }, [setPet, pet, getAchievement]);
 
     // add achievements
+    if(pet !== undefined){
     if (pet.health < 1) {
         getAchievement('kill')
     }
@@ -100,9 +101,9 @@ function App() {
     if (pet.hunger < 20) {
         getAchievement('starve')
     }
-
+    
     if (pet.name === '') {
-
+        
         const changeName = () => {
             setPet({
                 ...pet,
@@ -150,8 +151,9 @@ function App() {
                 </div>
             </div>
         );
-
+        
     }
+}
 }
 
 export default App;
