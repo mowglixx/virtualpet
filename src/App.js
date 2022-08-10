@@ -8,7 +8,7 @@ import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 const loadPet = () => {
     let petSave = JSON.parse(localStorage.getItem('pet.save'))
-    if(petSave){
+    if(petSave.health > 0){
         return petSave
     }
     else{
