@@ -9,11 +9,11 @@ import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 function App() {
 
-    const TICKSPEED = 500
+    const TICKSPEED = 250
 
     const nameInputField = useRef()
     const [pet, setPet] = useState({
-        name: 'Test Pet',
+        name: '',
         age: 0,
         birthday: {
             day: 1,
