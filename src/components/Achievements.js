@@ -41,14 +41,20 @@ export const ACHIEVEMENTS = pet => {
         },
         playPet: {
             icon: '🖐️',
-            achievement: 'Played with your pet',
+            achievement: `Played with ${pet.name}`,
             message: 'This one is kinda good king.',
             complete: false,
         },
         healPet: {
             icon: '❤️',
-            achievement: 'Healed your pet',
-            message: 'This wouldn\'t have happened if you looked after it in the first place!',
+            achievement: 'Gracious Healer',
+            message: 'This wouldn\'t have happened if you looked after it in the first place',
+            complete: false,
+        },
+        playedToDeath: {
+            icon: '🌄',
+            achievement: 'Played to Death',
+            message: 'They Died doing what they loved',
             complete: false,
         },
     }

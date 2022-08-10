@@ -12,9 +12,13 @@ export const PetButtons = ({ pet, setPet, getAchievement }) => {
     const playPet = () => {
         setPet({
             ...pet,
-            hunger: pet.hunger - 10 < 1 ? 0 : pet.hunger - 10
+            hunger: pet.hunger - 10 < 1 ? 0 : pet.hunger - 10,
+            health: pet.hunger < 1 ? pet.health -10: pet.health,
         })
         getAchievement('playPet')
+        if(pet.health < 10){
+            getAchievement('playedToDeath')
+        }
         // updateAchievements([...achievements, {icon: '🖐️', achievement: 'Played with your pet', message: 'This one is kinda good king.'}])
     }
     const healPet = () => {
