@@ -30,7 +30,7 @@ export const PetDisplay = ({ pet }) => {
                   title={`Pet Health ${pet.health}`}
                   value={pet.health}
                   max='100'
-                  color='red' />
+                  color='black' />
                   </div>
             </p>
             <p>
@@ -40,7 +40,7 @@ export const PetDisplay = ({ pet }) => {
                   title={`Pet Hunger ${pet.hunger}`}
                   value={pet.hunger}
                   max='100'
-                  color='blue' />
+                  color='black' />
                   </div>
                 </p>
             </div>

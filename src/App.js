@@ -8,10 +8,12 @@ import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 const loadPet = () => {
     let petSave = JSON.parse(localStorage.getItem('pet.save'))
-    if(petSave.health > 0){
-        return petSave
+    try {
+        if (petSave.health > 0) {
+            return petSave
+        }
     }
-    else{
+    catch {
         return {
             name: '',
             age: 0,
@@ -33,9 +35,9 @@ const savePet = (pet) => {
 }
 
 function App() {
-    
+
     const TICKSPEED = 250
-    
+
     const nameInputField = useRef()
     const [pet, setPet] = useState(loadPet())
 
@@ -56,44 +58,48 @@ function App() {
 
 
 
-useEffect(() =>{
-    const interval = setInterval(() => {
-        
-        if (pet.name.length){
-        savePet(pet)
-        let rand = Math.round(Math.random() * 3)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            try{
 
-        if (pet.hunger > 0 & pet.health > 0) {
-            setPet({
-                ...pet,
-                hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand
-            })
-        }
+                if (pet.hasOwnProperty('name')) {
+                    savePet(pet)
+                    let rand = Math.round(Math.random() * 3)
+                    
+                    if (pet.hunger > 0 & pet.health > 0) {
+                        setPet({
+                            ...pet,
+                            hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand
+                        })
+                    }
+                    
+                    if (pet.hunger < 1) {
+                        setPet({
+                            ...pet,
+                            health: pet.health - rand < 1 ? 0 : pet.health - rand
+                        })
+                    }
+                }
+            } catch {
+                return () => clearInterval(interval)
+            }
+            }, TICKSPEED);
+        return () => clearInterval(interval)
+    }, [setPet, pet, getAchievement]);
 
-        if (pet.hunger < 1) {
-            setPet({
-                ...pet,
-                health: pet.health - rand < 1 ? 0 : pet.health - rand
-            })
-        }
+    // add achievements
+    if (pet.health < 1) {
+        getAchievement('kill')
     }
-    }, TICKSPEED);
-    return () => clearInterval(interval)
-}, [setPet, pet, getAchievement]);
-        
-// add achievements
-if (pet.health < 1) {
-    getAchievement('kill')
-}
-if (pet.health > 0 && pet.health <= 20) {
-    getAchievement('nearlyDie')
-}
-if(pet.hunger < 80){
-    getAchievement('hungry')
-}
-if(pet.hunger < 20){
-    getAchievement('starve')
-}
+    if (pet.health > 0 && pet.health <= 20) {
+        getAchievement('nearlyDie')
+    }
+    if (pet.hunger < 80) {
+        getAchievement('hungry')
+    }
+    if (pet.hunger < 20) {
+        getAchievement('starve')
+    }
 
     if (pet.name === '') {
 
