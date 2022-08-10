@@ -1,0 +1,7 @@
+
+{
+    // disables inline html warning
+    "MD033": false,
+    // disables line length limit
+    "MD013": false
+}

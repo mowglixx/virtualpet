@@ -1,7 +1,7 @@
 import { PetDisplay } from './components/PetDisplay'
 import { PetButtons } from './components/PetButtons'
 import { useEffect, useState } from 'react'
-import { Achievements } from './components/Achievements'
+import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 // custom debug screen
 // import {Debug} from './components/Debug'
@@ -9,7 +9,7 @@ import { Achievements } from './components/Achievements'
 
 function App() {
 
-    const tickSpeed = 1000
+    const TICKSPEED = 1000
 
     const [pet, setPet] = useState({
         name: 'Poppy',
@@ -22,28 +22,20 @@ function App() {
         health: 100,
         hunger: 0,
         happiness: 50,
+        maxHunger: 100,
+        maxHealth: 100
+
     })
-    const [achievements, updateAchievements] = useState([{
-        icon: '🏆', 
-        achievement: 'Here we go!', 
-        message: 'You made a Virtual pet, in this economy?!'}
-    ])
+    const [achievements, updateAchievements] = useState(ACHIEVEMENTS(pet))
 
-    const cleanAchievments = () => {
-        const setList = new Set(achievements.map(a => a.achievement))
-        let newList = [...setList]
-        // console.log(newList)
-        let cheeves =  achievements.filter(item => {
-            if (item.achievement === newList[newList.indexOf(item.achievement)]) {
-                newList = newList.filter(i => (i !== newList[newList.indexOf(item.achievement)]))
-                return true
-            }
-            return false
-        })
-        // updateAchievements(cheeves)
-        return cheeves
+    const getAchievement = (key) => {
+        let current = achievements
+        current[key] = {
+            ...current[key],
+            complete: true
+        }
+        updateAchievements(current)
     }
-
     useEffect(() => {
         const tick = setInterval(async () => {
             let rand = Math.round(Math.random() * 3)
@@ -55,9 +47,8 @@ function App() {
                         ? 100
                         : pet.hunger + rand
                 })
-                pet.hunger < 100
-                    ? updateAchievements([...achievements, {icon: '🍽️', achievement: 'Made a pet hungry', message: `${pet.name} is hungry, great...`}])
-                    : updateAchievements([...achievements, {icon: '🍞', achievement: 'Starve your pet', message: `${pet.name} is starving, well done, I hope You're happy!`}])
+                getAchievement('hunger')
+                // add achievement
             }
 
             else {
@@ -67,11 +58,10 @@ function App() {
                         ? 0
                         : pet.health - rand
                 })
-                pet.health
-                    ? updateAchievements([...achievements, {icon: '💀', achievement: 'Nearly kill a pet', message: `${pet.name} is dying, feed and heal them!`}])
-                    : updateAchievements([...achievements, {icon: '☠️', achievement: 'Kill a pet', message: `${pet.name} is dead, it's too late`}])
+                // add achievement
+                getAchievement('healPet')
             }
-        }, tickSpeed);
+        }, TICKSPEED);
         return () => clearInterval(tick)
     })
 
@@ -81,14 +71,22 @@ function App() {
             <h1 className='petHeader'>Virtual Pet</h1>
             <div className='layout'>
                 <div className='flexCol'>
-            <PetDisplay pet={pet} />
-            <PetButtons pet={pet} setPet={setPet} achievements={achievements} updateAchievements={updateAchievements} />
+                    <PetDisplay pet={pet} />
+                    <PetButtons
+                        pet={pet}
+                        setPet={setPet}
+                        achievements={achievements}
+                        updateAchievements={updateAchievements} />
                 </div>
                 <div className='flexCol'>
-            <Achievements achievements={achievements} updateAchievements={updateAchievements}/>
-            
-            {/* for debugging vars */}
-            {/* <Debug achievements={achievements} other={{'key':'value'}}/> */}
+                    <Achievements
+                        achievements={achievements}
+                        updateAchievements={updateAchievements} 
+                        pet={pet}
+                        getAchievement={getAchievement}  />
+
+                    {/* for debugging vars */}
+                    {/* <Debug achievements={achievements} other={{'key':'value'}}/> */}
                 </div>
             </div>
         </div>

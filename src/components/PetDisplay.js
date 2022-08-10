@@ -27,7 +27,8 @@ export const PetDisplay = ({ pet }) => {
                     className="healthReadout">
                     {pet.health}%
                 </span>
-                {pet.health < 50 ? !pet.health ? ' Dead!' : ' Unwell' : ' OK'}
+                <progress id="health" value={pet.health} max="100"> {pet.health}% </progress>
+                {/* {pet.health < 50 ? !pet.health ? ' Dead!' : ' Unwell' : ' OK'} */}
             </p>
             <p>
                 Hunger:
@@ -35,7 +36,9 @@ export const PetDisplay = ({ pet }) => {
                     className="hungerReadout">
                     {pet.hunger}%
                 </span>
-                {pet.hunger > 50 ? pet.hunger > 80 ? ' Starving!' : ' Hungry' : ' OK'}</p>
+                <progress id="hunger" value={pet.hunger} max="100"> {pet.hunger}% </progress>
+                {/* {pet.hunger > 50 ? pet.hunger > 80 ? ' Starving!' : ' Hungry' : ' OK'} */}
+                </p>
             <p>Mood: {petMoodCalc()}</p>
         </div>
     )
