@@ -36,4 +36,4 @@ http://localhost:3000/
 
 ## Creature Features
 
-[Features / ToDo list]('FEATURES.md')
+[Features / ToDo list](./FEATURES.md)
