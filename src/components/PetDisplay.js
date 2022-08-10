@@ -24,23 +24,27 @@ export const PetDisplay = ({ pet }) => {
             <div className="flexRow">
 
             <p>
+                <div className='flexCol ProgressBarWrapper'>
                 <p>Health:</p>
                 <ProgressBar
                   title={`Pet Health ${pet.health}`}
                   value={pet.health}
                   max='100'
-                  color='black' />
+                  color='red' />
+                  </div>
             </p>
             <p>
+                <div className='flexCol ProgressBarWrapper'>
                 <p>Hunger:</p>
                 <ProgressBar
                   title={`Pet Hunger ${pet.hunger}`}
                   value={pet.hunger}
                   max='100'
-                  color='black' />
+                  color='blue' />
+                  </div>
                 </p>
             </div>
-            <img className={`petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`}/>
+            <img className={pet.health?`petImg livePet`:`petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`}/>
         </div>
     )
 }

@@ -7,7 +7,8 @@ export const ProgressBar = ({max, value, color='green', title}) => {
             <div className="progressBar" style={{
                 textAlign: 'center',
                 minHeight: `100%`,
-                minWidth: `${(step*value)}%`,
+                width: `${(step*value)}%`,
+                minWidth: `0`,
                 maxWidth:"100%",
                 backgroundColor: color,
                 color: 'white',
