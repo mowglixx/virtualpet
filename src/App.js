@@ -128,16 +128,17 @@ function App() {
 
             <div className={'flexCol'}>
 
-                <h1 className='petHeader'>Virtual Pet</h1>
+                <h2 className='petHeader' style={{textAlign: 'center'}}>PetBoi 98</h2>
                 <div className='flexCol'>
-                    <div className='flexCol padding'>
-                        <h2>Please choose your pet's name</h2>
+                    <div className='flexCol paddingMd justifyContentCenter'>
+                        <h2 style={{textAlign: 'center'}}>Please choose your pet's name</h2>
                     </div>
                     <div className='flexCol padding'>
                         <input
                             ref={nameInputField}
-                            className='padding marginY' />
-                        <button className='padding marginY' onClick={changeName}>Set Name</button>
+                            style={{textAlign: 'center'}}
+                            className='paddingMd marginY' />
+                        <button className='paddingMd marginY' onClick={changeName}>Set Name</button>
                     </div>
                 </div>
             </div>
@@ -151,7 +152,7 @@ function App() {
 
             <div className='toy'>
             <div className='toyInnerShine flexCol'>
-                <h1 className='petHeader'>Virtual Pet</h1>
+                <h2 className='petHeader' style={{textAlign: 'center'}}>PetBoi 98</h2>
                 <div className='flexCol'>
                     <div className='flexCol'>
                         <PetDisplay pet={pet} />

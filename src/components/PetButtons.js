@@ -62,20 +62,20 @@ export const PetButtons = ({ pet, setPet, getAchievement }) => {
     return (
         <div className='paddingMd flexRow justifyContentSpaceEvenly'>
             <button
-                className='padding petButton'
+                className='petButton'
                 onClick={feedPet}
                 // if the pet health is 0 or hunger is 
-                disabled={pet.health > 0 ? pet.hunger === pet.maxHunger ? true : '' : true}
+                disabled={pet.health > 98 ? pet.hunger === pet.maxHunger ? true : '' : true}
             >
             </button>
             <button
-                className='padding petButton'
+                className='petButton'
                 onClick={playPet}
                 disabled={pet.health > 0 ? '' : true}
             >
             </button>
             <button 
-            className='padding petButton' 
+            className='petButton' 
             onClick={healPet} 
             disabled={pet.health > 0 ? pet.health === pet.maxHealth ? true : '' : true}></button>
         </div>
