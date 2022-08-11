@@ -22,9 +22,7 @@ export const PetDisplay = ({ pet }) => {
         <div className="petElement">
             <h2>{pet.name}, {pet.age}</h2>
             <div className="flexRow">
-
-            <p>
-                <div className='flexCol ProgressBarWrapper'>
+                <div className='flexCol padding'>
                 <p>Health:</p>
                 <ProgressBar
                   title={`Pet Health ${pet.health}`}
@@ -32,9 +30,7 @@ export const PetDisplay = ({ pet }) => {
                   max='100'
                   color='black' />
                   </div>
-            </p>
-            <p>
-                <div className='flexCol ProgressBarWrapper'>
+                <div className='flexCol padding'>
                 <p>Hunger:</p>
                 <ProgressBar
                   title={`Pet Hunger ${pet.hunger}`}
@@ -42,7 +38,6 @@ export const PetDisplay = ({ pet }) => {
                   max='100'
                   color='black' />
                   </div>
-                </p>
             </div>
             <img className={pet.health?`petImg livePet`:`petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`}/>
         </div>

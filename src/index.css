@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-:root{
-  --bgColor: rgb(37, 37, 192);
+:root {
+  --colorBg: rgb(37, 37, 192);
+  --colorPrimary: rgb(59, 140, 211);
+  --paddingWrapper: 1em;
 }
 
 
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -13,37 +15,89 @@
   font-family: 'Press Start 2P', cursive;
 }
 
-body, div, button, input, form, nav {
+body,
+div,
+button,
+input,
+form,
+nav {
   display: flex;
 }
 
-button:hover{
+button{
+  justify-content: center;
+}
+
+button:hover {
   filter: brightness(0.8);
 }
-button:active{
+
+button:active {
   filter: invert();
 }
 
-body{
+body {
   flex-direction: column;
   margin: 0;
   padding: 0;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: var(--bgColor);
+  background-color: var(--colorBg);
   justify-content: center;
   align-items: center;
 }
 
-#root{
+#root {
   flex-direction: column;
   min-width: 30em;
   max-width: 40em;
 }
-.flexCol{
+
+.flexCol {
   flex-direction: column;
 }
-.toy{
+
+.flexRow {
+  flex-direction: row;
+}
+.justifyContentSpaceEvenly{
+  justify-content: space-evenly;
+}
+.justifyContentSpaceBetween{
+  justify-content: space-between;
+}
+.justifyContentSpaceAround{
+  justify-content: space-around;
+}
+
+.padding {
+  padding: var(--paddingWrapper);
+}
+
+.paddingX {
+  padding-left: var(--paddingWrapper);
+  padding-right: var(--paddingWrapper);
+}
+
+.paddingY {
+  padding-top: var(--paddingWrapper);
+  padding-bottom: var(--paddingWrapper);
+}
+.margin {
+  margin: var(--paddingWrapper);
+}
+
+.marginX {
+  margin-left: var(--paddingWrapper);
+  margin-right: var(--paddingWrapper);
+}
+
+.marginY {
+  margin-top: var(--paddingWrapper);
+  margin-bottom: var(--paddingWrapper);
+}
+
+.toy {
   flex-direction: column;
   background-color: rgb(59, 140, 211);
   padding: 8em;
@@ -52,10 +106,10 @@ body{
   border-top-right-radius: 50% 60%;
   border-bottom-right-radius: 50% 60%;
   border-bottom-left-radius: 50% 60%;
-  box-shadow: inset rgb(0,0,0, 0.5) -10px -10px 15px;
+  box-shadow: inset rgb(0, 0, 0, 0.5) -10px -10px 15px;
 }
 
-.petElement{
+.petElement {
   flex-direction: column;
   min-width: 100%;
   padding: 2em;
@@ -67,26 +121,28 @@ body{
   color: #111;
 }
 
-.petButton{
+.petButton {
   content: '';
   padding: 1em;
   justify-content: center;
   width: 3em;
   height: 3em;
   border-radius: 50% 25%;
-  box-shadow: 5px 15px 15px rgb(0,0,0,0.5);
+  box-shadow: 5px 15px 15px rgb(0, 0, 0, 0.5);
 }
-.petButtonContainer{
+
+.petButtonContainer {
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 2em;
   min-width: 100%;
 }
-.achievementComponent{ 
+
+.achievementComponent {
   flex-direction: column;
   background-color: rgb(255, 255, 255, 0.5);
   border-radius: 1em;
-  padding: 1em; 
+  padding: 1em;
   animation: forwards;
   animation: ease-in;
   animation-play-state: running;
@@ -103,36 +159,42 @@ body{
   align-items: center;
   background-color: rgb(77, 77, 77);
   color: white;
-  padding: 0em; 
+  padding: 0em;
   border-radius: 0.5em;
   width: 100%;
 }
-.achievement>div{
+
+.achievement>div {
   padding: 0.5em;
 }
-.achievement:hover{
+
+.achievement:hover {
   filter: brightness(1.2);
   cursor: pointer;
 }
-.achievementsList{ 
+
+.achievementsList {
   flex-direction: column;
 }
-.achievementMessage{
+
+.achievementMessage {
   font-family: sans-serif;
 }
 
-.achievement:hover .achievementMessage{
+.achievement:hover .achievementMessage {
   filter: opacity(1);
 }
-.achievementHeader{
+
+.achievementHeader {
   color: #ffbbcc
 }
 
 
-.petImg{
+.petImg {
   border-radius: 2em;
 }
-.livePet{
+
+.livePet {
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-name: petShuffle;
@@ -142,28 +204,33 @@ body{
   /* animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1); */
   transform: skew(0deg, 10deg);
 }
+
 @keyframes petShuffle {
-  0%{
+  0% {
     transform: skew(0deg, 2deg);
   }
-  20%{
+
+  20% {
     transform: skew(0deg, 0deg);
   }
-  80%{
+
+  80% {
     transform: skew(0deg, 3deg);
   }
+
   100% {
     transform: skew(0deg, -5deg);
   }
 }
 
-.progressBarWrapper{
-    align-items: center;
-    padding: 0em;
-    border: 0.1em black solid;
-  }
-.ProgressBarWrapper{
-    align-items: center;
-    padding: 0.5em;
-    /* border: 0.001em black solid; */
-  }
+.progressBarWrapper {
+  align-items: center;
+  padding: 0em;
+  border: 0.1em black solid;
+}
+
+.ProgressBarWrapper {
+  align-items: center;
+  padding: 0.5em;
+  /* border: 0.001em black solid; */
+}

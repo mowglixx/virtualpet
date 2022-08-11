@@ -3,15 +3,26 @@ import { PetButtons } from './components/PetButtons'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
-// custom debug screen
-// import {Debug} from './components/Debug'
 
 const loadPet = () => {
     let petSave = JSON.parse(localStorage.getItem('pet.save'))
     try {
-        if (petSave.health > 0) {
-            return petSave
+        if (!petSave.health) {
+            return {
+                name: '',
+                age: 0,
+                birthday: {
+                    day: 1,
+                    month: 1,
+                    year: 2000
+                },
+                health: 100,
+                hunger: 100,
+                maxHunger: 100,
+                maxHealth: 100
+            }
         }
+        return petSave
     }
     catch {
         return {
@@ -113,13 +124,15 @@ function App() {
         return (
             <div className='toy'>
                 <h1 className='petHeader'>Virtual Pet</h1>
-                <div className='layout'>
-                    <div className='flexCol'>
+                <div className='flexCol'>
+                    <div className='flexCol padding'>
                         <h2>Please choose your pet's name</h2>
+                    </div>
+                    <div className='flexCol padding'>
                         <input
                             ref={nameInputField}
-                            className='nameInputField' />
-                        <button onClick={changeName}>Set Name</button>
+                            className='padding marginY' />
+                        <button className='padding marginY' onClick={changeName}>Set Name</button>
                     </div>
                 </div>
             </div>
@@ -127,9 +140,11 @@ function App() {
     }
     else {
         return (
+            <div className='flexCol'>
+
             <div className='toy'>
                 <h1 className='petHeader'>Virtual Pet</h1>
-                <div className='layout'>
+                <div className='flexCol'>
                     <div className='flexCol'>
                         <PetDisplay pet={pet} />
                         <PetButtons
@@ -138,17 +153,15 @@ function App() {
                             achievements={achievements}
                             getAchievement={getAchievement} />
                     </div>
+                </div>
+            </div>
                     <div className='flexCol'>
                         <Achievements
                             achievements={achievements}
                             updateAchievements={updateAchievements}
                             pet={pet}
                             getAchievement={getAchievement} />
-
-                        {/* for debugging vars */}
-                        {/* <Debug achievements={achievements} other={{'key':'value'}}/> */}
                     </div>
-                </div>
             </div>
         );
         
