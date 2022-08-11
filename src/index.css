@@ -51,8 +51,21 @@ body {
 
 #root {
   flex-direction: column;
-  min-width: 30em;
-  max-width: 40em;
+  align-items: center;
+  min-width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  max-height: 100vh;
+  padding: 4em;
+}
+
+.layout{
+  flex-direction: row;
+}
+@media (max-width: 768px){
+  .layout{
+    flex-direction: column;
+  }
 }
 
 .flexCol {
@@ -72,22 +85,50 @@ body {
   justify-content: space-around;
 }
 
-.padding {
-  padding: var(--paddingMd);
+.justifyContentCenter{
+  justify-content: center;
 }
 
+/* Padding */
+
 .paddingX {
+  padding-left: var(--paddingSm);
+  padding-right: var(--paddingSm);
+}
+
+.paddingY {
+  padding-top: var(--paddingSm);
+  padding-bottom: var(--paddingSm);
+}
+.padding {
+  padding: var(--paddingSm);
+}
+.paddingMdX {
   padding-left: var(--paddingMd);
   padding-right: var(--paddingMd);
 }
 
-.paddingY {
+.paddingMdY {
   padding-top: var(--paddingMd);
   padding-bottom: var(--paddingMd);
 }
-.margin {
-  margin: var(--paddingSm);
+.paddingMd {
+  padding: var(--paddingMd);
 }
+.paddingLgX {
+  padding-left: var(--paddingLg);
+  padding-right: var(--paddingLg);
+}
+
+.paddingLgY {
+  padding-top: var(--paddingLg);
+  padding-bottom: var(--paddingLg);
+}
+.paddingLg {
+  padding: var(--paddingLg);
+}
+
+/* Margin */
 
 .marginX {
   margin-left: var(--paddingSm);
@@ -99,16 +140,53 @@ body {
   margin-bottom: var(--paddingSm);
 }
 
+.margin {
+  margin: var(--paddingMd);
+}
+.marginMdX {
+  margin-left: var(--paddingMd);
+  margin-right: var(--paddingMd);
+}
+
+.marginMdY {
+  margin-top: var(--paddingMd);
+  margin-bottom: var(--paddingMd);
+}
+
+.marginMd {
+  margin: var(--paddingLg);
+}
+.marginLgX {
+  margin-left: var(--paddingLg);
+  margin-right: var(--paddingLg);
+}
+
+.marginLgY {
+  margin-top: var(--paddingLg);
+  margin-bottom: var(--paddingLg);
+}
+
+.marginLg {
+  margin: var(--paddingLg);
+}
+
 .toy {
   flex-direction: column;
   background-color: rgb(59, 140, 211);
-  padding: 8em;
-  /* max-width: ; */
-  border-top-left-radius: 50% 60%;
+  max-width: 60vh;
+  /* max-height: 80vh; */
+  /* border-top-left-radius: 50% 60%;
   border-top-right-radius: 50% 60%;
   border-bottom-right-radius: 50% 60%;
-  border-bottom-left-radius: 50% 60%;
-  box-shadow: inset rgb(0, 0, 0, 0.5) -10px -10px 15px;
+  border-bottom-left-radius: 50% 60%; */
+  border-radius: var(--paddingLg);
+  box-shadow: inset rgb(255,255,255, 0.5) 2vw 2vh  2vh;
+}
+.toyInnerShine{
+  padding: 4em;
+  box-shadow: inset rgb(0, 0, 0, 0.5) -2vw -2vh  2vh ;
+  border-radius: var(--paddingLg);
+
 }
 
 .petElement {
@@ -129,8 +207,8 @@ body {
   justify-content: center;
   width: 3em;
   height: 3em;
-  border-radius: 50% 25%;
-  box-shadow: 5px 15px 15px rgb(0, 0, 0, 0.5);
+  border-radius: var(--paddingLg);
+  box-shadow: var(--paddingSm) var(--paddingSm) var(--paddingMd) rgb(0, 0, 0, 0.3);
 }
 
 .petButtonContainer {
@@ -162,7 +240,7 @@ body {
   background-color: rgb(77, 77, 77);
   color: white;
   padding: 0em;
-  border-radius: 0.5em;
+  border-radius: var(--paddingMd);
   width: 100%;
 }
 
@@ -171,7 +249,7 @@ body {
 }
 
 .achievement:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.15);
   cursor: pointer;
 }
 
@@ -193,6 +271,7 @@ body {
 
 
 .petImg {
+  min-width: 100%;
   border-radius: 2em;
 }
 

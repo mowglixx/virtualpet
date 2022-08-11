@@ -123,7 +123,11 @@ function App() {
             })
         }
         return (
-            <div className='toy'>
+            <div className='toy flexCol justifyContentCenter'>
+            <div className='toyInnerShine'>
+
+            <div className={'flexCol'}>
+
                 <h1 className='petHeader'>Virtual Pet</h1>
                 <div className='flexCol'>
                     <div className='flexCol padding'>
@@ -137,13 +141,16 @@ function App() {
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
         );
     }
     else {
         return (
-            <div className='flexCol'>
+            <div className='layout'>
 
             <div className='toy'>
+            <div className='toyInnerShine flexCol'>
                 <h1 className='petHeader'>Virtual Pet</h1>
                 <div className='flexCol'>
                     <div className='flexCol'>
@@ -155,6 +162,7 @@ function App() {
                             getAchievement={getAchievement} />
                     </div>
                 </div>
+            </div>
             </div>
                     <div className='flexCol'>
                         <Achievements
