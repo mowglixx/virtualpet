@@ -72,7 +72,7 @@ export const ACHIEVEMENTS = () => {
                 <div className="achievementIcon">
                     <h2>{icon}</h2>
                 </div>
-                <div style={{ flexDirection: 'column' }}>
+                <div className="flexCol">
                     <p className="achievementHeader">
                         {achievement}
                     </p>
@@ -89,13 +89,13 @@ export const ACHIEVEMENTS = () => {
 
 export const Achievements = ({ achievements }) => {
 
-    const d = () => {
+    const getDemCheeves = () => {
         let elements = [];
         const cheeves = [...Object.keys(achievements)]
             .filter(item => achievements[item].complete === true)
             
-            cheeves.map(key => {
-                return elements.push(<Achievement {...achievements[key]} />)
+            cheeves.map((key, i) => {
+                return elements.push(<Achievement key={i} {...achievements[key]} />)
             })
         return elements
     }
@@ -105,7 +105,7 @@ export const Achievements = ({ achievements }) => {
             <h2 style={{ fontSize: '1.2em' }}>Achievements</h2>
             <div className='achievementsList'>
                 {/* cleanAchievments™️ */}
-                {d()}
+                {getDemCheeves()}
             </div>
         </div>
     )
