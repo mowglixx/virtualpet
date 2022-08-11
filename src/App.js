@@ -75,7 +75,7 @@ function App() {
 
                 if (pet.hasOwnProperty('name')) {
                     let rand = Math.round(Math.random() * 3)
-                    
+                    if(pet.name !== ''){
                     if (pet.hunger > 0 & pet.health > 0) {
                         setPet({
                             ...pet,
@@ -90,6 +90,7 @@ function App() {
                         })
                     }
                     savePet(pet)
+                }
                 }
             } catch {
                 return () => clearInterval(interval)
@@ -118,7 +119,7 @@ function App() {
         const changeName = () => {
             setPet({
                 ...pet,
-                name: nameInputField.current.value
+                name: nameInputField.current.value.trim()
             })
         }
         return (
