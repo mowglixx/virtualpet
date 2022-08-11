@@ -47,7 +47,7 @@ const savePet = (pet) => {
 
 function App() {
 
-    const TICKSPEED = 250
+    const TICKSPEED = 2500
 
     const nameInputField = useRef()
     const [pet, setPet] = useState(loadPet())
@@ -74,7 +74,6 @@ function App() {
             try{
 
                 if (pet.hasOwnProperty('name')) {
-                    savePet(pet)
                     let rand = Math.round(Math.random() * 3)
                     
                     if (pet.hunger > 0 & pet.health > 0) {
@@ -90,6 +89,7 @@ function App() {
                             health: pet.health - rand < 1 ? 0 : pet.health - rand
                         })
                     }
+                    savePet(pet)
                 }
             } catch {
                 return () => clearInterval(interval)

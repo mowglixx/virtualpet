@@ -3,7 +3,9 @@
 :root {
   --colorBg: rgb(37, 37, 192);
   --colorPrimary: rgb(59, 140, 211);
-  --paddingWrapper: 1em;
+  --paddingSm: 0.3em;
+  --paddingMd: calc(var(--paddingSm) * 2);
+  --paddingLg: calc(var(--paddingMd) * 2);
 }
 
 
@@ -71,30 +73,30 @@ body {
 }
 
 .padding {
-  padding: var(--paddingWrapper);
+  padding: var(--paddingMd);
 }
 
 .paddingX {
-  padding-left: var(--paddingWrapper);
-  padding-right: var(--paddingWrapper);
+  padding-left: var(--paddingMd);
+  padding-right: var(--paddingMd);
 }
 
 .paddingY {
-  padding-top: var(--paddingWrapper);
-  padding-bottom: var(--paddingWrapper);
+  padding-top: var(--paddingMd);
+  padding-bottom: var(--paddingMd);
 }
 .margin {
-  margin: var(--paddingWrapper);
+  margin: var(--paddingSm);
 }
 
 .marginX {
-  margin-left: var(--paddingWrapper);
-  margin-right: var(--paddingWrapper);
+  margin-left: var(--paddingSm);
+  margin-right: var(--paddingSm);
 }
 
 .marginY {
-  margin-top: var(--paddingWrapper);
-  margin-bottom: var(--paddingWrapper);
+  margin-top: var(--paddingSm);
+  margin-bottom: var(--paddingSm);
 }
 
 .toy {

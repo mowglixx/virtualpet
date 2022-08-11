@@ -4,37 +4,37 @@ import petImg from '../images/pet.jpg'
 
 export const PetDisplay = ({ pet }) => {
 
-    let petMood = (pet.health+pet.hunger)/2
+    let petMood = Math.round((pet.health+pet.hunger)/2)
 
     return (
-        <div className="petElement">
+        <div className="petElement flexCol">
+                <div className='flexRow'>
             <h2>{pet.name}, {pet.age}</h2>
-            <div className="flexRow">
-                <div className='flexCol padding'>
-                    <p>Health:</p>
+                </div>
+                <div className='flexRow'>
                     <ProgressBar
                         title={`Pet Health ${pet.health}`}
                         value={pet.health}
                         max='100'
-                        color='black' />
+                        color='black'
+                        stat={'Health'} />
                 </div>
-                <div className='flexCol padding'>
-                    <p>Hunger:</p>
+            <div className="flexRow">
                     <ProgressBar
                         title={`Pet Hunger ${pet.hunger}`}
                         value={pet.hunger}
                         max='100'
-                        color='black' />
+                        color='black'
+                        stat={'Hunger'} />
                 </div>
-                <div className='flexCol padding'>
-                    <p>Mood:</p>
+            <div className="flexRow">
                     <ProgressBar
                         title={`Pet Mood ${petMood}`}
                         value={petMood}
                         max='100'
-                        color='black' />
+                        color='black'
+                        stat={'Mood'} />
                 </div>
-            </div>
             <img className={pet.health ? `petImg livePet` : `petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`} />
         </div>
     )
