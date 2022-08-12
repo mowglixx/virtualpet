@@ -62,11 +62,6 @@ body {
 .layout{
   flex-direction: row;
 }
-@media (max-width: 768px){
-  .layout{
-    flex-direction: column;
-  }
-}
 
 .flexCol {
   flex-direction: column;
@@ -227,11 +222,13 @@ body {
   animation: ease-in;
   animation-play-state: running;
   animation-delay: 2s;
+  margin-top: var(--paddingMd);
 }
 
 .achievementWrapper {
   display: flex;
-  margin-bottom: 0.5em;
+  margin-top: var(--paddingMd);
+  margin-bottom: var(--paddingMd);
 }
 
 .achievement {
@@ -314,4 +311,12 @@ body {
   align-items: center;
   padding: 0.5em;
   /* border: 0.001em black solid; */
+}
+
+
+/* mobile overides */
+@media (max-width: 768px){
+  .layout{
+    flex-direction: column;
+  }
 }

@@ -149,7 +149,6 @@ function App() {
     else {
         return (
             <div className='layout'>
-
             <div className='toy'>
             <div className='toyInnerShine flexCol'>
                 <h2 className='petHeader' style={{textAlign: 'center'}}>PetBoi 98</h2>

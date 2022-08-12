@@ -65,7 +65,7 @@ export const PetButtons = ({ pet, setPet, getAchievement }) => {
                 className='petButton'
                 onClick={feedPet}
                 // if the pet health is 0 or hunger is 
-                disabled={pet.health > 98 ? pet.hunger === pet.maxHunger ? true : '' : true}
+                disabled={pet.health > 50 ? pet.hunger === pet.maxHunger ? true : '' : true}
             >
             </button>
             <button
