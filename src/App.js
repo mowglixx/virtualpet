@@ -89,7 +89,7 @@ function App() {
             if (pet.hunger > 0 & pet.health > 0) {
               setPet({
                 ...pet,
-                // hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand,
+                hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand,
                 age: pet.age + PETAGEINCREMENT
               })
             }
@@ -101,16 +101,7 @@ function App() {
                 age: pet.age + PETAGEINCREMENT
               })
             }
-            // if (pet.hasOwnProperty('age')) {
-            //   if (pet.name !== '') {
-            //     if (pet.health > 0) {
-            //       setPet({
-            //         ...pet,
-            //         age: pet.age + 0.1
-            //       })
-            //     }
-            //   }
-            // }
+
           }
         }
       } catch {
@@ -141,6 +132,12 @@ function App() {
     }
     if(pet.age > 0.2) {
       getAchievement('birthday')
+    }
+    if(pet.age > 1){
+      setPet({
+        ...pet,
+        maxHealth: maxHealth+Math.round(pet.age *10)
+      })
     }
 
     if (pet.name === '') {
