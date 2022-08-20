@@ -9,7 +9,7 @@ export const PetDisplay = ({ pet }) => {
     return (
         <div className="petElement flexCol">
             <div className='flexRow'>
-                <h2>{pet.name}, {pet.age}</h2>
+                <h2>{pet.name}, {Math.round(pet.age)}</h2>
             </div>
             <div className='flexRow'>
                 <ProgressBar

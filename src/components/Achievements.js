@@ -57,6 +57,12 @@ export const ACHIEVEMENTS = () => {
                     message: 'They Died doing what they loved',
                     complete: false,
                 },
+                birthday: {
+                    icon: 'B',
+                    achievement: 'Happy Birthday!',
+                    message: 'You didn\'t kill your pet, yay?',
+                    complete: false,
+                },
             })
     }
     
