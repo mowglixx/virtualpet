@@ -3,42 +3,27 @@ import { PetButtons } from './components/PetButtons'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
+const defaultPet = {
+  name: '',
+  age: 0,
+  birthday: {
+    day: 1,
+    month: 1,
+    year: 2000
+  },
+  health: 100,
+  hunger: 100,
+  maxHunger: 100,
+  maxHealth: 100
+}
 
 const loadPet = () => {
-  let petSave = JSON.parse(localStorage.getItem('pet.save'))
-  try {
-    if (!petSave.health) {
-      return {
-        name: '',
-        age: 0,
-        birthday: {
-          day: 1,
-          month: 1,
-          year: 2000
-        },
-        health: 100,
-        hunger: 100,
-        maxHunger: 100,
-        maxHealth: 100
-      }
-    }
-    return petSave
-  }
-  catch {
-    return {
-      name: '',
-      age: 0,
-      birthday: {
-        day: 1,
-        month: 1,
-        year: 2000
-      },
-      health: 100,
-      hunger: 100,
-      maxHunger: 100,
-      maxHealth: 100
-    }
-  }
+  let petSave =
+    JSON.parse(localStorage.getItem('pet.save'))
+      ? JSON.parse(localStorage.getItem('pet.save'))
+      : defaultPet
+
+  return petSave
 }
 
 const savePet = (pet) => {
@@ -68,56 +53,52 @@ function App() {
     }
   })
 
+  const tickEvents = () => {
+
+    try {
+
+      if (pet.hasOwnProperty('name')) {
+        let rand = Math.round(Math.random() * 3)
+        if (pet.name !== '') {
+          if (pet.hunger > 0 & pet.health > 0) {
+            setPet({
+              ...pet,
+              hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand,
+              age: pet.age + PETAGEINCREMENT
+            })
+          }
+
+          if (pet.hunger === 0) {
+            setPet({
+              ...pet,
+              health: pet.health - rand < 1 ? 0 : pet.health - rand,
+              age: pet.age + PETAGEINCREMENT
+            })
+          }
+
+        }
+      }
+    } catch {
+      return () => console.log('pet tick fail')
+    }
+  }
 
   // standard game tick event loop
   useEffect(() => {
-    // const ageTick = setInterval(() => {
-    //   try {
-  
-
-    //   } catch {
-    //     return () => clearInterval(ageTick)
-    //   }
-    // }, PETAGEINTERVAL);
-    const gameTick = setInterval(() => {
-      console.log('tick')
-      try {
-
-        if (pet.hasOwnProperty('name')) {
-          let rand = Math.round(Math.random() * 3)
-          if (pet.name !== '') {
-            if (pet.hunger > 0 & pet.health > 0) {
-              setPet({
-                ...pet,
-                hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand,
-                age: pet.age + PETAGEINCREMENT
-              })
-            }
-
-            if (pet.hunger === 0) {
-              setPet({
-                ...pet,
-                health: pet.health - rand < 1 ? 0 : pet.health - rand,
-                age: pet.age + PETAGEINCREMENT
-              })
-            }
-
-          }
-        }
-      } catch {
-        return () => clearInterval(gameTick)
-      }
-    }, GAMETICKSPEED);
+    if (pet !== defaultPet){
+    
+    const gameTick = setInterval(tickEvents, GAMETICKSPEED);
     savePet(pet)
     return () => {
       clearInterval(gameTick)
       // clearInterval(ageTick)
     }
-  }, [setPet, pet, getAchievement]);
+  }
+  });
 
 
   // add achievements
-  if (pet !== undefined) {
+  if (pet !== undefined || pet !== defaultPet) {
     if (pet.health < 1) {
       getAchievement('kill')
     }
@@ -130,17 +111,11 @@ function App() {
     if (pet.hunger < 20) {
       getAchievement('starve')
     }
-    if(pet.age > 0.2) {
+    if (pet.age > 0.99) {
       getAchievement('birthday')
     }
-    if(pet.age > 1){
-      setPet({
-        ...pet,
-        maxHealth: maxHealth+Math.round(pet.age *10)
-      })
-    }
 
-    if (pet.name === '') {
+    if (pet.heath < 1 || pet.name === '') {
 
       const changeName = () => {
         setPet({
@@ -154,7 +129,7 @@ function App() {
 
             <div className={'flexCol'}>
 
-              <h2 className='petHeader' style={{ textAlign: 'center' }}>PetBoi 98</h2>
+              <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
               <div className='flexCol'>
                 <div className='flexCol paddingMd justifyContentCenter'>
                   <h2 style={{ textAlign: 'center' }}>Please choose your pet's name</h2>
@@ -177,7 +152,7 @@ function App() {
         <div className='layout'>
           <div className='toy'>
             <div className='toyInnerShine flexCol'>
-              <h2 className='petHeader' style={{ textAlign: 'center' }}>PetBoi 98</h2>
+              <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
               <div className='flexCol'>
                 <div className='flexCol'>
                   <PetDisplay pet={pet} />

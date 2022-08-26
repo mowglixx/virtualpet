@@ -1,5 +1,5 @@
 import { ProgressBar } from './ProgressBar'
-import petImg from '../images/pet.jpg'
+import petImg from '../images/stage0.svg'
 
 
 export const PetDisplay = ({ pet }) => {
