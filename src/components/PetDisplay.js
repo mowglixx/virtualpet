@@ -35,7 +35,7 @@ export const PetDisplay = ({ pet }) => {
                     color='black'
                     stat={'Mood'} />
             </div>
-            <div className='flexRow'>
+            <div className='flexRow justifyContentCenter'>
                 <img className={pet.health ? `petImg livePet` : `petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`} />
             </div>
             <div className='flexRow justifyContentSpaceEvenly paddingY marginY'>

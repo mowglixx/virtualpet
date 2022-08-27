@@ -284,7 +284,8 @@ body {
 
 
 .petImg {
-  min-width: 100%;
+  min-width: 50%;
+  max-width: 50%;
   border-radius: 2em;
 }
 

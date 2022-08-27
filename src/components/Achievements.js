@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 // function to init achievemnts state for App when pet is created
-export const ACHIEVEMENTS = () => {
+export const ACHIEVEMENTS = (pet) => {
             return ({
                 start: {
                     icon: '🏆',

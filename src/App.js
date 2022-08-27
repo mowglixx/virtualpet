@@ -1,6 +1,7 @@
 import { PetDisplay } from './components/PetDisplay'
 import { PetButtons } from './components/PetButtons'
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { NameChanger } from './components/NameChanger'
+import { useEffect, useState, useCallback } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
 const defaultPet = {
@@ -35,7 +36,7 @@ function App() {
   const PETAGEINCREMENT = 0.01
   const GAMETICKSPEED = 2500
 
-  const nameInputField = useRef()
+
   const [pet, setPet] = useState(loadPet())
 
 
@@ -76,6 +77,7 @@ function App() {
             })
           }
 
+
         }
       }
     } catch {
@@ -85,15 +87,15 @@ function App() {
 
   // standard game tick event loop
   useEffect(() => {
-    if (pet !== defaultPet){
-    
-    const gameTick = setInterval(tickEvents, GAMETICKSPEED);
-    savePet(pet)
-    return () => {
-      clearInterval(gameTick)
-      // clearInterval(ageTick)
+    if (pet !== defaultPet) {
+
+      const gameTick = setInterval(tickEvents, GAMETICKSPEED);
+      savePet(pet)
+      return () => {
+        clearInterval(gameTick)
+        // clearInterval(ageTick)
+      }
     }
-  }
   });
 
 
@@ -114,69 +116,39 @@ function App() {
     if (pet.age > 0.99) {
       getAchievement('birthday')
     }
-
-    if (pet.heath < 1 || pet.name === '') {
-
-      const changeName = () => {
-        setPet({
-          ...pet,
-          name: nameInputField.current.value.trim()
-        })
-      }
-      return (
-        <div className='toy flexCol justifyContentCenter'>
-          <div className='toyInnerShine'>
-
-            <div className={'flexCol'}>
-
-              <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
-              <div className='flexCol'>
-                <div className='flexCol paddingMd justifyContentCenter'>
-                  <h2 style={{ textAlign: 'center' }}>Please choose your pet's name</h2>
-                </div>
-                <div className='flexCol padding'>
-                  <input
-                    ref={nameInputField}
-                    style={{ textAlign: 'center' }}
-                    className='paddingMd marginY' />
-                  <button className='paddingMd marginY' onClick={changeName}>Set Name</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className='layout'>
-          <div className='toy'>
-            <div className='toyInnerShine flexCol'>
-              <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
-              <div className='flexCol'>
-                <div className='flexCol'>
-                  <PetDisplay pet={pet} />
-                  <PetButtons
-                    pet={pet}
-                    setPet={setPet}
-                    achievements={achievements}
-                    getAchievement={getAchievement} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='flexCol'>
-            <Achievements
-              achievements={achievements}
-              updateAchievements={updateAchievements}
-              pet={pet}
-              getAchievement={getAchievement} />
-          </div>
-        </div>
-      );
-
+    if (pet.heath === 0) {
+      // dead
+      setPet(defaultPet)
     }
   }
+  return (
+    pet.health === 0 || pet === defaultPet
+      ? <NameChanger pet={defaultPet} setPet={setPet} />
+      : <div className='layout'>
+        <div className='toy'>
+          <div className='toyInnerShine flexCol'>
+            <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
+            <div className='flexCol'>
+              <div className='flexCol'>
+                <PetDisplay pet={pet} />
+                <PetButtons
+                  pet={pet}
+                  setPet={setPet}
+                  achievements={achievements}
+                  getAchievement={getAchievement} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='flexCol'>
+          <Achievements
+            achievements={achievements}
+            updateAchievements={updateAchievements}
+            pet={pet}
+            getAchievement={getAchievement} />
+        </div>
+      </div>)
 }
+
 
 export default App;
