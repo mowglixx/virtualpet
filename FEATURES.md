@@ -11,7 +11,7 @@ Below is the planned features / Complete parts of the app.
 - [x] Able to Feed the Pet
 - [x] Able to Play with the Pet
   - [x] Playing increases hunger levels
-    - [ ] Playing decrases health instead when hunger is 0
+    - [x] Playing decrases health instead when hunger is 0
 - [ ] :poop:
 - [ ] Player has currency
   - [ ] Playing with the pet rewards in-app currency
