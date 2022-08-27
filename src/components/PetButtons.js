@@ -25,7 +25,7 @@ export const PetButtons = ({ pet, setPet, getAchievement }) => {
         // set newPet before set state
         const newPet = {
             ...pet,
-            hunger: pet.hunger - 10 < 1 ? 0 : pet.hunger - 10,
+            hunger: pet.hunger - 5 < 1 ? 0 : pet.hunger - 5,
             health: pet.hunger < 1 ? pet.health -10: pet.health,
             moodDelta: pet.moodDelta + 10 >= 100 ? 100 : pet.moodDelta + 10
         }
