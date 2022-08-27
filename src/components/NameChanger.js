@@ -19,7 +19,7 @@ export const NameChanger = ({pet, setPet}) => {
             <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
             <div className='flexCol'>
               <div className='flexCol paddingMd justifyContentCenter'>
-                <h2 style={{ textAlign: 'center' }}>Please choose your pet's name</h2>
+                <h2 style={{ color: 'white',textAlign: 'center' }}>Please choose your pet's name</h2>
               </div>
               <div className='flexCol padding'>
                 <input
