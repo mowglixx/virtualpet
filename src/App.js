@@ -146,7 +146,7 @@ function App() {
         updateAchievements={updateAchievements}
         pet={pet}
         getAchievement={getAchievement} />
-    <a href="https://github.com/mowglixx/virtualpet" target={'_blank'} style={{color: 'white', textDecoration: 'none'}}>GitHub</a>
+    <a href="https://github.com/mowglixx/virtualpet" target={'_blank'} rel="noreferrer" style={{color: 'white', textDecoration: 'none'}}>GitHub</a>
     </div>)
 }
 

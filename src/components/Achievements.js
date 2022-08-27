@@ -108,7 +108,7 @@ export const Achievements = ({ achievements }) => {
 
     return (
         <div className="achievementComponent">
-            <h2 style={{ fontSize: '1.2em' }}>Achievements</h2>
+            <h2 style={{ fontSize: '1.2em', color: 'var(--gameBoyBlue)' }}>Achievements</h2>
             <div className='achievementsList'>
                 {/* cleanAchievments™️ */}
                 {getDemCheeves()}

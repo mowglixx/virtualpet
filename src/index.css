@@ -6,6 +6,8 @@
 
 
   --lcdShadow: hsl(210, 100%, 5%, 0.7) 0.08em 0.08em 0.05em;
+  --insetShadow: inset rgb(0, 0, 0, 0.2) 15px 15px 5px;
+
   --lcdTextColor: #132613;
   --gameBoyBlue: #2a2d93;
   --lcdBG: #5c834a;
@@ -35,7 +37,6 @@ nav {
 
 button{
   justify-content: center;
-  background-color: #532238;
 }
 
 body {
@@ -204,7 +205,7 @@ body {
   border-radius: 3em;
   /* LCD Screen Color */
   background-color: var(--lcdBG);
-  box-shadow: inset rgb(0, 0, 0, 0.2) 15px 15px 5px;
+  box-shadow: var(--insetShadow);
   /* LCD Text Color */
   color: var(--lcdTextColor);
   text-shadow: var(--lcdShadow);
@@ -222,9 +223,17 @@ body {
   width: 3em;
   height: 3em;
   border-radius: var(--paddingLg);
-  box-shadow: var(--paddingSm) var(--paddingSm) var(--paddingMd) rgb(0, 0, 0, 0.3);
+  box-shadow: var(--paddingSm) var(--paddingSm) var(--paddingSm) rgb(0, 0, 0, 0.3);
+  background-color: #532238;
 }
-
+.petButton:active{
+  box-shadow: 0.2em 0.2em var(--paddingSm) rgb(0, 0, 0, 0.3);
+  background-color: #431228;
+}
+.petButton:hover{
+  filter: brightness(1.1);
+  cursor: pointer;
+}
 .petButtonContainer {
   flex-direction: row;
   justify-content: space-evenly;
@@ -234,7 +243,7 @@ body {
 
 .achievementComponent {
   flex-direction: column;
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: var(--colorPrimary);
   border-radius: 1em;
   padding: 1em;
   min-width: 100%;
@@ -254,11 +263,12 @@ body {
 .achievement {
   flex-direction: row;
   align-items: center;
-  background-color: rgb(77, 77, 77);
+  background-color: var(--lcdBG);
   color: white;
   padding: 0em;
   border-radius: var(--paddingMd);
   width: 100%;
+  box-shadow: var(--insetShadow);
 }
 
 .achievement>div {
@@ -272,18 +282,24 @@ body {
 
 .achievementsList {
   flex-direction: column;
+  min-width: 100%;
+  max-width: 50vw;
 }
 
 .achievementMessage {
-  font-family: sans-serif;
-}
-
-.achievement:hover .achievementMessage {
-  filter: opacity(1);
+  font-size: 1em;
+  color: var(--lcdTextColor);
+  text-shadow: var(--lcdShadow);
+  padding: 0.3em;
+  line-break: all;
+  margin-top: 1em;
 }
 
 .achievementHeader {
-  color: #ffbbcc
+  padding: 0.3em;
+  color: var(--lcdTextColor);
+  border: 0.1em solid var(--lcdTextColor);
+  filter: drop-shadow(var(--lcdShadow));
 }
 
 
