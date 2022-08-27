@@ -9,13 +9,12 @@ You have to care for your little buddy as they're hungry, like constantly... you
 ## Details
 
 Current State: Working / WIP
->Made as part of Master 40 with [CodeNation]('https://wearecodenation.com')
 
 ## Quick Start
 
 ### Demo
 
-Live Demo: [Netlify Deployment](https://petboy.netlify.app/)
+Live Demo: [Netlify Demo](https://petboy.netlify.app/)
 
 ### Install
 
