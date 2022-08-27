@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+
+  </style>
   <g transform="matrix(1, 0, 0, 1, 2.543932, -8.903762)">
-    <g transform="matrix(4.1319, 0, 0, 3.571103, -509.597504, -582.924622)" style="">
-      <rect x="135.83" y="175.477" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
-      <rect x="168.904" y="184.57" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
-      <rect x="191.672" y="213.529" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
-      <rect x="182.922" y="260.661" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
-      <rect x="172.524" y="239.832" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
-      <rect x="132.083" y="259.493" width="44.787" height="35.032" style="stroke: rgb(0, 0, 0);"/>
+    <g class="petMainBody" transform="matrix(4.1319, 0, 0, 3.571103, -509.597504, -582.924622)" style="">
+      <rect x="135.83" y="175.477" width="44.787" height="35.032"/>
+      <rect x="168.904" y="184.57" width="44.787" height="35.032"/>
+      <rect x="191.672" y="213.529" width="44.787" height="35.032"/>
+      <rect x="182.922" y="260.661" width="44.787" height="35.032"/>
+      <rect x="172.524" y="239.832" width="44.787" height="35.032"/>
+      <rect x="132.083" y="259.493" width="44.787" height="35.032"/>
     </g>
-    <rect x="32.335" y="117.529" width="175.259" height="226.12" style="stroke: rgb(0, 0, 0);"/>
+    <rect class="petWingRect" x="32.335" y="117.529" width="175.259" height="226.12"/>
   </g>
 </svg>

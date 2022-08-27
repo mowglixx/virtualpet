@@ -285,36 +285,96 @@ body {
 
 .petImg {
   min-width: 50%;
-  max-width: 50%;
+  max-width: 75%;
   border-radius: 2em;
 }
+
+g>*{
+  box-shadow: var(--lcdShadow);
+}
+
+.petWingRect{
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: petFlap;
+  /* animation-delay: 2s; */
+  animation-duration: 0.15s;
+  animation-fill-mode: both;
+}
+.petEyelidRect{
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: petBlink;
+  animation-delay: 2s;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  /* animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1); */
+  /* transform: skew(0deg, 10deg); */
+}
+.petBellyRect{
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: petBreathe;
+  /* animation-delay: 2s; */
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+  
+}
+
 
 .livePet {
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-name: petShuffle;
   /* animation-delay: 2s; */
-  animation-duration: 0.4s;
-  animation-fill-mode: both;
+  animation-duration: 1s;
+  /* animation-fill-mode: both; */
   /* animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1); */
-  transform: skew(0deg, 10deg);
+  transform: skew(0deg, 0deg);
 }
+
+
 
 @keyframes petShuffle {
   0% {
-    transform: skew(0deg, 2deg);
+    /* transform: rotate(0deg); */
+    transform: scaleY(1);
   }
-
-  20% {
-    transform: skew(0deg, 0deg);
+  89% {
   }
-
-  80% {
-    transform: skew(0deg, 3deg);
+  90% {
   }
-
   100% {
-    transform: skew(0deg, -5deg);
+    /* transform: rotate(0.5deg); */
+    transform: scaleY(1.02);
+  }
+}
+
+@keyframes petBlink {
+  90% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1.1);
+  }
+}
+@keyframes petBreathe {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    x: 169;
+  }
+}
+@keyframes petFlap {
+  0% {
+    x: 32;
+    transform: scaleX(1) rotate(0deg);
+  }
+  
+  100% {
+    x: -12;
+    transform: scaleX(1.09) rotate(-5deg);
   }
 }
 
