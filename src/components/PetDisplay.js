@@ -4,12 +4,12 @@ import petImg from '../images/stage0.svg'
 
 export const PetDisplay = ({ pet }) => {
 
-    let petMood = Math.round((pet.health + pet.hunger) / 2)
+    let petMood = Math.round((pet.health + pet.hunger + pet.moodDelta) / 3)
 
     return (
         <div className="petElement flexCol">
             <div className='flexRow'>
-                <h2>{pet.name}, {Math.round(pet.age)}</h2>
+                <h3>{pet.name}, {Math.round(pet.age)}</h3>
             </div>
             <div className='flexRow'>
                 <ProgressBar

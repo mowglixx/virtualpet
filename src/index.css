@@ -6,6 +6,7 @@
 
   --lcdShadow: hsl(210, 100%, 5%, 0.7) 0.09em 0.09em 0em;
   --gameBoyBlue: #2a2d93;
+  --lcdBG: rgb(72, 95, 87);
 
   --paddingSm: 0.3em;
   --paddingMd: calc(var(--paddingSm) * 2);
@@ -32,14 +33,6 @@ nav {
 
 button{
   justify-content: center;
-}
-
-button:hover {
-  filter: brightness(0.8);
-}
-
-button:active {
-  filter: invert();
 }
 
 body {
@@ -190,6 +183,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 1.25em;
   color: var(--gameBoyBlue);
   margin-bottom: 1em;
 }
@@ -202,13 +196,19 @@ body {
   flex-direction: column;
   min-width: 100%;
   padding: 2em;
+  padding-bottom: 0.5em;
   border-radius: 3em;
   /* LCD Screen Color */
-  background-color: rgb(72, 95, 87);
+  background-color: var(--lcdBG);
   box-shadow: inset rgb(0, 0, 0, 0.2) 15px 15px 5px;
   /* LCD Text Color */
   color: #111;
   text-shadow: var(--lcdShadow);
+}
+
+.nameButton{
+  background-color: black;
+  color: var(--lcdBG);
 }
 
 .petButton {
