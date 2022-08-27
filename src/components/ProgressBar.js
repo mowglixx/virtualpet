@@ -17,7 +17,7 @@ export const ProgressBar = ({max, value, color='green', title, stat}) => {
                 backgroundColor: color,
                 color: 'white',
                 transition: 'width 0.5s',
-            }}><span style={{fontSize: '1em',padding: '0.5em', minWidth: '1000%'}}>{value}%</span></div>
+            }}><span style={{fontSize: '1em',padding: '0.5em'}}>{value}%</span></div>
         </div>
         </div>
         </>

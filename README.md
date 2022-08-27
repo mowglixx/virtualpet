@@ -15,7 +15,7 @@ Current State: Working / WIP
 
 ### Demo
 
-Live Demo: [Netlify Deployment](https://visionary-cat-a96749.netlify.app/)
+Live Demo: [Netlify Deployment](https://petboy.netlify.app/)
 
 ### Install
 
