@@ -34,7 +34,7 @@ const savePet = (pet) => {
 
 function App() {
 
-  const PETAGEINCREMENT = 0.001 // 0.001 = 1000 ticks per pet year of age
+  const PETAGEINCREMENT = 0.01 // 0.01 = 100 ticks per pet year of age
   const GAMETICKSPEED = 2500 // 2500 = 6.99 hours per year of pet age
 
 
@@ -95,7 +95,6 @@ function App() {
       savePet(pet)
       return () => {
         clearInterval(gameTick)
-        // clearInterval(ageTick)
       }
     }
   });
@@ -127,26 +126,26 @@ function App() {
     <div className='layout'>
       <div className='toy'>
         <div className='toyInnerShine flexCol'>
-          <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Chimtembo</span> PetBoy</h2>
+          <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Davetendo</span> PetBoy</h2>
           <div className='flexCol'>
-              {pet.health === 0 || pet === defaultPet
-                ? <NameChanger pet={defaultPet} setPet={setPet} />
-                : <>
-                  <PetDisplay pet={pet} />
-                  <PetButtons
-                    pet={pet}
-                    setPet={setPet}
-                    achievements={achievements}
-                    getAchievement={getAchievement} />
-                </>}
-            </div>
+            {pet.health === 0 || pet === defaultPet
+              ? <NameChanger pet={defaultPet} setPet={setPet} />
+              : <>
+                <PetDisplay pet={pet} />
+                <PetButtons
+                  pet={pet}
+                  setPet={setPet}
+                  achievements={achievements}
+                  getAchievement={getAchievement} />
+              </>}
+          </div>
         </div>
       </div>
-        <Achievements
-          achievements={achievements}
-          updateAchievements={updateAchievements}
-          pet={pet}
-          getAchievement={getAchievement} />
+      <Achievements
+        achievements={achievements}
+        updateAchievements={updateAchievements}
+        pet={pet}
+        getAchievement={getAchievement} />
     </div>)
 }
 

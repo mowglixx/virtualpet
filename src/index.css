@@ -2,11 +2,13 @@
 
 :root {
   --colorBg: hsl(0, 0%, 10%);
-  --colorPrimary: hsl(11, 0%, 5%);
+  --colorPrimary: #85807a;
 
-  --lcdShadow: hsl(210, 100%, 5%, 0.7) 0.09em 0.09em 0em;
+
+  --lcdShadow: hsl(210, 100%, 5%, 0.7) 0.08em 0.08em 0.05em;
+  --lcdTextColor: #132613;
   --gameBoyBlue: #2a2d93;
-  --lcdBG: rgb(72, 95, 87);
+  --lcdBG: #5c834a;
 
   --paddingSm: 0.3em;
   --paddingMd: calc(var(--paddingSm) * 2);
@@ -33,6 +35,7 @@ nav {
 
 button{
   justify-content: center;
+  background-color: #532238;
 }
 
 body {
@@ -188,6 +191,7 @@ body {
   margin-bottom: 1em;
 }
 .Chimtembo{
+  color: rgb( 210, 0, 0, 0.7);
   border: 0.3em solid;
   border-radius: 35%;
   padding: 0.5em; text-transform: uppercase;
@@ -202,7 +206,7 @@ body {
   background-color: var(--lcdBG);
   box-shadow: inset rgb(0, 0, 0, 0.2) 15px 15px 5px;
   /* LCD Text Color */
-  color: #111;
+  color: var(--lcdTextColor);
   text-shadow: var(--lcdShadow);
 }
 
@@ -289,8 +293,9 @@ body {
   border-radius: 2em;
 }
 
-g>*{
-  box-shadow: var(--lcdShadow);
+.lcdShadow{
+  /* filter: drop-shadow(var(--lcdShadow)); */
+  fill: var(--lcdTextColor);
 }
 
 .petWingRect{
