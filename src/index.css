@@ -254,36 +254,40 @@ body {
   margin-top: var(--paddingMd);
 }
 
-.achievementWrapper {
-  display: flex;
-  margin-top: var(--paddingMd);
-  margin-bottom: var(--paddingMd);
-}
-
-.achievement {
-  flex-direction: row;
-  align-items: center;
-  background-color: var(--lcdBG);
-  color: white;
-  padding: 0em;
-  border-radius: var(--paddingMd);
-  width: 100%;
-  box-shadow: var(--insetShadow);
-}
-
-.achievement>div {
-  padding: 0.5em;
-}
-
-.achievement:hover {
-  filter: brightness(1.15);
-  cursor: pointer;
-}
-
 .achievementsList {
   flex-direction: column;
   min-width: 100%;
   max-width: 50vw;
+}
+
+.achievementWrapper {
+display: flex;
+margin-top: var(--paddingMd);
+margin-bottom: var(--paddingMd);
+}
+
+.achievement {
+  flex-direction: row;
+  background-color: var(--lcdBG);
+  color: white;
+  padding: 1em;
+  border-radius: var(--paddingMd);
+  min-width: 100%;
+  box-shadow: var(--insetShadow);
+}
+
+
+.achievement:hover {
+  filter: brightness(1.15);
+  /* cursor: pointer; */
+}
+.achievementIcon {
+  font-family: monospace;
+  font-size: 2em;
+  padding: var(--paddingMd);
+}
+.achievementMessageWrapper{
+  flex-grow: 1;
 }
 
 .achievementMessage {
@@ -296,9 +300,10 @@ body {
 }
 
 .achievementHeader {
+  min-width: 100%;
   padding: 0.3em;
   color: var(--lcdTextColor);
-  border: 0.1em solid var(--lcdTextColor);
+  border-bottom: 0.1em solid var(--lcdTextColor);
   filter: drop-shadow(var(--lcdShadow));
 }
 
@@ -314,25 +319,11 @@ body {
   fill: var(--lcdTextColor);
 }
 
-.petWingRect{
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-name: petFlap;
-  /* animation-delay: 2s; */
-  animation-duration: 0.15s;
-  animation-fill-mode: both;
+.petBody, .petHead{
+  fill: var(--lcdTextColor)
 }
-.petEyelidRect{
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-name: petBlink;
-  animation-delay: 2s;
-  animation-duration: 1.5s;
-  animation-fill-mode: both;
-  /* animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1); */
-  /* transform: skew(0deg, 10deg); */
-}
-.petBellyRect{
+
+.torsoRect, .legsRect, .petHeadRect, .feetRect{
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-name: petBreathe;
@@ -341,7 +332,17 @@ body {
   animation-fill-mode: both;
   
 }
+.legsRect{
+  animation-delay: 0.2s;
+}
+.petHeadRect{
+  animation-delay: 0.5s;
+}
 
+.petEye, .mouthRect{
+  stroke: var(--lcdTextColor);
+  fill: var(--lcdBG);
+}
 
 .livePet {
   animation-direction: alternate;
@@ -379,14 +380,16 @@ body {
     transform: scale(1, 1.1);
   }
 }
+
 @keyframes petBreathe {
   0% {
-    transform: scale(1, 1);
+    x: 170;
   }
   100% {
-    x: 169;
+    x: 175;
   }
 }
+
 @keyframes petFlap {
   0% {
     x: 32;

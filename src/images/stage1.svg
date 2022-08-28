@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <g id="petHead" style="" transform="matrix(2.551806, 0, 0, 2.551806, -253.397171, -279.519653)">
+    <title>head</title>
+    <rect id="petHeadRect" x="163.382" y="132.78" width="45.124" height="45.643" style="stroke: rgb(0, 0, 0); fill: url(#color-0);">
+      <title>petHeadRect</title>
+    </rect>
+    <rect id="mouthRect" x="180.132" y="158.914" width="12.724" height="9.746" style="stroke: rgb(0, 0, 0); fill: url(#color-1);">
+      <title>mouthRect</title>
+    </rect>
+    <g id="eyes">
+      <title>eyes</title>
+      <rect id="leftEyeRect" x="166.888" y="125.544" width="10.561" height="10.561" style="stroke: rgb(0, 0, 0); fill: url(#color-1);">
+        <title>leftEyeRect</title>
+      </rect>
+      <rect id="rightEyeRect" x="189.404" y="125.145" width="10.959" height="10.959" style="stroke: rgb(0, 0, 0); fill: url(#color-1);">
+        <title>rightEyeRect</title>
+      </rect>
+    </g>
+  </g>
+  <g id="body" style="" transform="matrix(2.551806, 0, 0, 2.551806, -215.400681, -268.466125)">
+    <title>body</title>
+    <rect id="torsoRect" x="155.083" y="171.162" width="46.68" height="46.68" style="stroke: rgb(0, 0, 0); fill: url(#color-0);">
+      <title>torsoRect</title>
+    </rect>
+    <rect id="legsRect" x="150.415" y="210.062" width="47.199" height="47.199" style="stroke: rgb(0, 0, 0); fill: url(#color-0);">
+      <title>legsRect</title>
+    </rect>
+    <rect id="feetRect" x="155.083" y="248.963" width="48.755" height="48.755" style="stroke: rgb(0, 0, 0); fill: url(#color-0);">
+      <title>feetRect</title>
+    </rect>
+  </g>
+</svg>

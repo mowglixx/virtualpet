@@ -13,6 +13,7 @@ const defaultPet = {
     year: 2000
   },
   health: 100,
+  aliveStatus: true, // alive = true
   hunger: 100,
   moodDelta: 100,
   maxHunger: 100,
@@ -71,35 +72,63 @@ function App() {
             })
           }
 
-          if (pet.hunger === 0) {
+          if (pet.hunger < 1) {
             setPet({
               ...pet,
               health: pet.health - rand < 1 ? 0 : pet.health - rand,
               age: pet.age + PETAGEINCREMENT
             })
           }
-
-
+          
+          
         }
       }
+      savePet(pet)
     } catch {
       return () => console.log('pet tick fail')
     }
   }
-
+  
   // standard game tick event loop
   useEffect(() => {
     if (pet !== defaultPet) {
-
+      
       const gameTick = setInterval(tickEvents, GAMETICKSPEED);
-      savePet(pet)
       return () => {
         clearInterval(gameTick)
       }
     }
   });
+  
+  const HandleDeath = (pet) => {
+    if (pet.aliveStatus === false || pet.health === 0) {
+      if(pet.name !== ''){
+        return(
+          <div className='flexCol'>
+          Your pet, {pet.name}, Died!
+          <NameChanger pet={defaultPet} setPet={setPet} />
+          </div>
+          )
 
-
+      } else {
+        return(
+          <div className='flexCol'>
+          <NameChanger pet={defaultPet} setPet={setPet} />
+          </div>)
+      }
+    }
+    return (
+      <div className='flexCol'>
+      <PetDisplay pet={pet} />
+      <PetButtons
+          pet={pet}
+          setPet={setPet}
+          achievements={achievements}
+          getAchievement={getAchievement} />
+          </div>)
+  }
+  
+  
   // add achievements
   if (pet !== undefined || pet !== defaultPet) {
     if (pet.health < 1) {
@@ -117,27 +146,19 @@ function App() {
     if (pet.age > 0.99) {
       getAchievement('birthday')
     }
-    if (pet.heath === 0) {
+    if (pet.health < 1 && pet.name !== '') {
       // dead
-      setPet(defaultPet)
+      setPet({...defaultPet, aliveStatus: false})
+      updateAchievements(ACHIEVEMENTS())
     }
   }
   return (
     <div className='layout'>
       <div className='toy'>
-        <div className='toyInnerShine flexCol'>
+      <div className='toyInnerShine flexCol'>
           <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Davetendo</span> PetBoy</h2>
           <div className='flexCol'>
-            {pet.health === 0 || pet === defaultPet
-              ? <NameChanger pet={defaultPet} setPet={setPet} />
-              : <>
-                <PetDisplay pet={pet} />
-                <PetButtons
-                  pet={pet}
-                  setPet={setPet}
-                  achievements={achievements}
-                  getAchievement={getAchievement} />
-              </>}
+            <HandleDeath {...pet} />
           </div>
         </div>
       </div>
@@ -146,7 +167,7 @@ function App() {
         updateAchievements={updateAchievements}
         pet={pet}
         getAchievement={getAchievement} />
-    <a href="https://github.com/mowglixx/virtualpet" target={'_blank'} rel="noreferrer" style={{color: 'white', textDecoration: 'none'}}>GitHub</a>
+      <a className={'paddingLg'} href="https://github.com/mowglixx/virtualpet" target={'_blank'} rel="noreferrer" style={{ color: 'white', textDecoration: 'none' }}>GitHub</a>
     </div>)
 }
 
