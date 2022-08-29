@@ -352,14 +352,6 @@ margin-bottom: var(--paddingMd);
   fill: var(--lcdBG);
 }
 
-.livePet {
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-name: petShuffle;
-  animation-duration: 1s;
-
-}
-
 
 
 @keyframes petShuffle {
@@ -382,13 +374,13 @@ margin-bottom: var(--paddingMd);
 
 @keyframes petBreathe {
   0% {
-    x: 165;
+    transform: skew(0deg);
   }
   50% {
-    x: 175;
+    transform: skew(3deg);
   }
   100% {
-    x: 165;
+    transform: skew(0deg);
   }
 }
 

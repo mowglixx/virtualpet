@@ -37,9 +37,9 @@ export const PetDisplay = ({ pet }) => {
             </div>
             <div className='flexRow justifyContentCenter'>
                 {/* <img className={pet.health ? `petImg livePet` : `petImg`} src={petImg} alt={`Your Pet, ${pet.name}`} title={`Your Pet, ${pet.name}`} /> */}
-                <PetImg pet={pet}/>
+                <PetImg age={10}/>
             </div>
-            <div className='flexRow justifyContentSpaceEvenly paddingY marginY'>
+            <div className='flexRow justifyContentSpaceEvenly paddingLgY'>
                 <div className='flexCol'>
                     Feed
                 </div>

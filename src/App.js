@@ -35,14 +35,13 @@ const savePet = (pet) => {
 
 function App() {
 
-  const PETAGEINCREMENT = 0.01 // 0.01 = 100 ticks per pet year of age
+  const PETAGEINCREMENT = 0.0 // 0.01 = 100 ticks per pet year of age
   const GAMETICKSPEED = 2500 // 2500 = 6.99 hours per year of pet age
 
 
   const [pet, setPet] = useState(loadPet())
 
-
-  const [achievements, updateAchievements] = useState(ACHIEVEMENTS(pet))
+  const [achievements, updateAchievements] = useState(pet.name !== '' ? ACHIEVEMENTS(pet): [])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAchievement = useCallback((key) => {
@@ -59,31 +58,40 @@ function App() {
   const tickEvents = () => {
 
     try {
-
+      
       if (pet.hasOwnProperty('name')) {
         let rand = Math.round(Math.random() * 3)
-        if (pet.name !== '') {
-          if (pet.hunger > 0 & pet.health > 0) {
-            setPet({
-              ...pet,
-              hunger: pet.hunger - rand < 1 ? 0 : pet.hunger - rand,
-              moodDelta: pet.moodDelta - rand < 1 ? 0 : pet.moodDelta - rand,
-              age: pet.age + PETAGEINCREMENT
-            })
+        // create a temporary pet for manipulation per tick
+        let newPet = pet
+        // pause the tick effects if the pet is nameless
+        if (newPet.name !== '') {
+          if (newPet.hunger > 0 & newPet.health > 0) {
+            newPet = {
+              ...newPet,
+              hunger: newPet.hunger - rand < 1 ? 0 : newPet.hunger - rand,
+              moodDelta: newPet.moodDelta - rand < 1 ? 0 : newPet.moodDelta - rand,
+              age: newPet.age + PETAGEINCREMENT
+            }
           }
-
+          // if pet is hungry
           if (pet.hunger < 1) {
-            setPet({
-              ...pet,
-              health: pet.health - rand < 1 ? 0 : pet.health - rand,
-              age: pet.age + PETAGEINCREMENT
-            })
+            newPet = {
+              ...newPet,
+              health: newPet.health - rand < 1 ? 0 : newPet.health - rand,
+              age: newPet.age + PETAGEINCREMENT,
+            }
           }
-          
+          // update pet achievements with current achievements state
+          newPet = {
+            ...newPet,
+            achievements: achievements
+          }
           
         }
+        // set pet state and 
+        setPet(newPet)
+        savePet(newPet)
       }
-      savePet(pet)
     } catch {
       return () => console.log('pet tick fail')
     }
@@ -105,15 +113,15 @@ function App() {
       if(pet.name !== ''){
         return(
           <div className='flexCol'>
-          Your pet, {pet.name}, Died!
-          <NameChanger pet={defaultPet} setPet={setPet} />
+            <p>Your pet, {pet.name}, Died!</p>
+            <NameChanger pet={defaultPet} setPet={setPet} />
           </div>
           )
 
       } else {
         return(
           <div className='flexCol'>
-          <NameChanger pet={defaultPet} setPet={setPet} />
+            <NameChanger pet={defaultPet} setPet={setPet} />
           </div>)
       }
     }
@@ -158,6 +166,7 @@ function App() {
       <div className='toyInnerShine flexCol'>
           <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Davetendo</span> PetBoy</h2>
           <div className='flexCol'>
+          {/* pass pet directly to props */}
             <HandleDeath {...pet} />
           </div>
         </div>
