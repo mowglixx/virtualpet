@@ -328,7 +328,15 @@ margin-bottom: var(--paddingMd);
   animation-iteration-count: infinite;
   animation-name: petBreathe;
   /* animation-delay: 2s; */
-  animation-duration: 0.8s;
+  animation-duration: 2500ms;
+  animation-fill-mode: both;
+  
+}
+.petEye{
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-name: petBlink;
+  animation-duration: 2s;
   animation-fill-mode: both;
   
 }
@@ -348,45 +356,39 @@ margin-bottom: var(--paddingMd);
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-name: petShuffle;
-  /* animation-delay: 2s; */
   animation-duration: 1s;
-  /* animation-fill-mode: both; */
-  /* animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1); */
-  transform: skew(0deg, 0deg);
+
 }
 
 
 
 @keyframes petShuffle {
   0% {
-    /* transform: rotate(0deg); */
-    transform: scaleY(1);
-  }
-  89% {
-  }
-  90% {
+    transform: scale(1);
   }
   100% {
-    /* transform: rotate(0.5deg); */
-    transform: scaleY(1.02);
+    transform: scale(1.02);
   }
 }
 
 @keyframes petBlink {
-  90% {
-    transform: scale(1, 1);
+  95% {
+    /* height: 10; */
   }
   100% {
-    transform: scale(1, 1.1);
+    /* height: 0; */
   }
 }
 
 @keyframes petBreathe {
   0% {
-    x: 170;
+    x: 165;
+  }
+  50% {
+    x: 175;
   }
   100% {
-    x: 175;
+    x: 165;
   }
 }
 
