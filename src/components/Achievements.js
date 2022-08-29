@@ -103,8 +103,9 @@ export const Achievements = ({ achievements }) => {
         <div className="achievementComponent">
             <h2 style={{ fontSize: '1.2em', color: 'var(--gameBoyBlue)' }}>Achievements</h2>
             <div className='achievementsList'>
+                Currently Retired...
                 {/* cleanAchievments™️ */}
-                {getDemCheeves()}
+                {/* {getDemCheeves().map(Item => <Item />)} */}
             </div>
         </div>
     )
