@@ -92,8 +92,9 @@ export const Achievements = ({ achievements }) => {
 
     const getDemCheeves = () => {
         let elements = [];
-        [...Object.keys(achievements)].filter(item => achievements[item].complete === true).map((key, i) => {
-            return elements.push(<Achievement key={i} {...achievements[key]} />)
+        let cheeves = [...Object.keys(achievements)].filter(item => achievements[item].complete === true)
+        cheeves.forEach((key, i) => {
+            elements.push(<Achievement key={i} {...achievements[key]} />)
         })
         return elements
     }
