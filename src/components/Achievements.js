@@ -1,6 +1,6 @@
 
 // function to init achievemnts state for App when pet is created
-export const ACHIEVEMENTS = (pet) => {
+export const ACHIEVEMENTS = () => {
     return ({
         start: {
             icon: '🏆',
@@ -93,7 +93,7 @@ export const Achievements = ({ achievements }) => {
     const getDemCheeves = () => {
         let elements = [];
         [...Object.keys(achievements)].filter(item => achievements[item].complete === true).map((key, i) => {
-            elements.push(<Achievement key={i} {...achievements[key]} />)
+            return elements.push(<Achievement key={i} {...achievements[key]} />)
         })
         return elements
     }
