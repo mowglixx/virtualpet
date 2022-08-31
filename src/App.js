@@ -17,7 +17,8 @@ const defaultPet = {
   hunger: 100,
   moodDelta: 100,
   maxHunger: 100,
-  maxHealth: 100
+  maxHealth: 100,
+  achievements: ACHIEVEMENTS()
 }
 
 const loadPet = () => {
@@ -41,7 +42,7 @@ function App() {
 
   const [pet, setPet] = useState(loadPet())
 
-  const [achievements, updateAchievements] = useState(pet.name !== '' ? ACHIEVEMENTS(pet): [])
+  const [achievements, updateAchievements] = useState(pet.achievements)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getAchievement = useCallback((key) => {
@@ -58,7 +59,7 @@ function App() {
   const tickEvents = () => {
 
     try {
-      
+
       if (pet.hasOwnProperty('name')) {
         let rand = Math.round(Math.random() * 3)
         // create a temporary pet for manipulation per tick
@@ -86,7 +87,7 @@ function App() {
             ...newPet,
             achievements: achievements
           }
-          
+
         }
         // set pet state and 
         setPet(newPet)
@@ -96,47 +97,51 @@ function App() {
       return () => console.log('pet tick fail')
     }
   }
-  
+
   // standard game tick event loop
   useEffect(() => {
     if (pet !== defaultPet) {
-      
+
       const gameTick = setInterval(tickEvents, GAMETICKSPEED);
       return () => {
         clearInterval(gameTick)
       }
     }
   });
-  
+
   const HandleDeath = (pet) => {
     if (pet.aliveStatus === false || pet.health === 0) {
-      if(pet.name !== ''){
-        return(
+      if (pet.name !== '') {
+        return (
           <div className='flexCol'>
             <p>Your pet, {pet.name}, Died!</p>
-            <NameChanger pet={defaultPet} setPet={setPet} />
+            <NameChanger 
+              pet={defaultPet} 
+              setPet={setPet} />
           </div>
-          )
+        )
 
       } else {
-        return(
+        return (
           <div className='flexCol'>
-            <NameChanger pet={defaultPet} setPet={setPet} />
+            <NameChanger 
+              pet={defaultPet} 
+              setPet={setPet} />
           </div>)
       }
     }
     return (
       <div className='flexCol'>
-      <PetDisplay pet={pet} />
-      <PetButtons
+        <PetDisplay pet={pet} />
+        <PetButtons
           pet={pet}
           setPet={setPet}
           achievements={achievements}
           getAchievement={getAchievement} />
-          </div>)
+      </div>)
   }
-  
-  
+
+
   // add achievements
   if (pet !== undefined || pet !== defaultPet) {
     if (pet.health < 1) {
@@ -156,29 +161,35 @@ function App() {
     }
     if (pet.health < 1 && pet.name !== '') {
       // dead
-      setPet({...defaultPet, aliveStatus: false})
+      setPet({ 
+        ...defaultPet, 
+        aliveStatus: false })
       updateAchievements(ACHIEVEMENTS())
     }
   }
   return (
     <div className='layout'>
       <div className='toy'>
-      <div className='toyInnerShine flexCol'>
+        <div className='toyInnerShine flexCol'>
           <h2 className='petHeader' style={{ textAlign: 'center' }}><span className='Chimtembo'>Davetendo</span> PetBoy</h2>
           <div className='flexCol'>
-          {/* pass pet directly to props */}
             <HandleDeath {...pet} />
           </div>
         </div>
       </div>
       <Achievements
-        achievements={achievements}
-        updateAchievements={updateAchievements}
-        pet={pet}
-        getAchievement={getAchievement} />
-      <a className={'paddingLg'} href="https://github.com/mowglixx/virtualpet" target={'_blank'} rel="noreferrer" style={{ color: 'white', textDecoration: 'none' }}>GitHub</a>
-    </div>)
+        achievements={pet.achievements} />
+      <a
+        className={'paddingLg'}
+        href="https://github.com/mowglixx/virtualpet"
+        target={'_blank'}
+        rel="noreferrer"
+        style={{
+          color: 'white',
+          textDecoration: 'none'
+        }}>GitHub</a>
+    </div>
+  )
 }
-
 
 export default App;
