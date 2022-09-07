@@ -36,7 +36,7 @@ const savePet = (pet) => {
 }
 
 
-  const PETAGEINCREMENT = 0.0 // 0.01 = 100 ticks per pet year of age
+  const PETAGEINCREMENT = 0.01 // 0.01 = 100 ticks per pet year of age
   const GAMETICKSPEED = 2500 // 2500 = 6.99 hours per year of pet age
 
 
