@@ -63,8 +63,8 @@ const savePet = (pet) => {
         let rand = Math.round(Math.random() * 3)
         // create a temporary pet for manipulation per tick
         let newPet = {...pet}
-        // pause the tick effects if the pet is nameless
-        if (newPet.name !== '') {
+        // pause the tick effects if the pet is Technoblade
+        if (newPet.name !== 'Technoblade') {
           if (newPet.hunger > 0 & newPet.health > 0) {
             newPet = {
               ...newPet,
