@@ -1,7 +1,7 @@
 
 
 export const PetImg = ({ age }) => {
-
+    age = Math.round(age)
     const lumps = age + 1
 
     const petBodyLumps = () => {
