@@ -48,10 +48,10 @@ export const PetImg = ({ age }) => {
             <g id="petBody">
                 {petBodyLumps().map((_, index) => {
                     return (
-                        <>
+                        <g key={index}>
                         <rect className="torsoRect" x={lumpLocation(index).x} y={lumpLocation(index).y} width={lumpSize} height={lumpSize-5} rx={"5%"} style={{animationDelay: `${index*0.5}s`}} />
                         {index > 0 && <rect className="torsoRect" x={lumpLocation(index).x+lumpSize/3} y={lumpLocation(index).y-(lumpSize/5)} width={lumpSize/3} height={lumpSize/3} rx={"5%"} style={{ animationDelay: `${index*0.5}s`}} />}
-                        </>
+                        </g>
                         )
                 })}
                 {/* add lumps here */}

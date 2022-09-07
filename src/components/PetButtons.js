@@ -37,7 +37,7 @@ export const PetButtons = ({ pet, setPet, getAchievement }) => {
 
         // Achievements
         getAchievement('playPet')
-        if (pet.health < 10) {
+        if (pet.health <= 10) {
             getAchievement('playedToDeath')
         }
 

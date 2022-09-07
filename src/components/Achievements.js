@@ -1,7 +1,6 @@
 
 // function to init achievemnts state for App when pet is created
-export const ACHIEVEMENTS = () => {
-    return ({
+export const ACHIEVEMENTS = {
         start: {
             icon: '🏆',
             achievement: 'Here we go!',
@@ -62,8 +61,7 @@ export const ACHIEVEMENTS = () => {
             message: 'You didn\'t kill your pet, yay?',
             complete: false,
         },
-    })
-}
+    }
 
 const Achievement = ({ icon, message, achievement }) => {
 

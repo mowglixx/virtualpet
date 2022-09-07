@@ -4,6 +4,7 @@ import { NameChanger } from './components/NameChanger'
 import { useEffect, useState, useCallback } from 'react'
 import { Achievements, ACHIEVEMENTS } from './components/Achievements'
 
+function App() {
 const defaultPet = {
   name: '',
   age: 0,
@@ -18,7 +19,7 @@ const defaultPet = {
   moodDelta: 100,
   maxHunger: 100,
   maxHealth: 100,
-  achievements: ACHIEVEMENTS()
+  achievements: ACHIEVEMENTS
 }
 
 const loadPet = () => {
@@ -34,7 +35,6 @@ const savePet = (pet) => {
   localStorage.setItem('pet.save', JSON.stringify(pet))
 }
 
-function App() {
 
   const PETAGEINCREMENT = 0.0 // 0.01 = 100 ticks per pet year of age
   const GAMETICKSPEED = 2500 // 2500 = 6.99 hours per year of pet age
@@ -151,7 +151,7 @@ function App() {
       setPet({ 
         ...defaultPet, 
         aliveStatus: false })
-      updateAchievements(ACHIEVEMENTS())
+      updateAchievements(ACHIEVEMENTS)
     }
   }
   return (
@@ -165,7 +165,7 @@ function App() {
         </div>
       </div>
       <Achievements
-        achievements={pet.achievements} />
+        achievements={achievements} />
       <a
         className={'paddingLg'}
         href="https://github.com/mowglixx/virtualpet"
