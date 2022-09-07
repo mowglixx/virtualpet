@@ -311,7 +311,6 @@ margin-bottom: var(--paddingMd);
 .petImg {
   min-width: 50%;
   max-width: 75%;
-  border-radius: 2em;
 }
 
 .lcdShadow{

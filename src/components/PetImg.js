@@ -14,8 +14,8 @@ export const PetImg = ({ age }) => {
     const canvasSize = lumps * 100
     const lumpSize = canvasSize / (lumps)
     const lumpLocation = (index) => {
-        let x = (canvasSize / 2) - (lumpSize / 2)
-        let y = lumpSize * index
+        let x = (canvasSize / 2) - (lumpSize / 2)+5
+        let y = lumpSize * index+5
         return { x, y }
     }
     const eyeLocation = { // needs doing
@@ -43,14 +43,14 @@ export const PetImg = ({ age }) => {
     return (
         <svg
             className={`petImg`}
-            viewBox={`0 0 ${canvasSize} ${canvasSize}`}>
+            viewBox={`0 0 ${canvasSize+10} ${canvasSize+10}`}>
             {/* commented out for lumpy maths (see above) */}
             <g id="petBody">
                 {petBodyLumps().map((_, index) => {
                     return (
                         <g key={index}>
-                        <rect className="torsoRect" x={lumpLocation(index).x} y={lumpLocation(index).y} width={lumpSize} height={lumpSize-5} rx={"5%"} style={{animationDelay: `${index*0.5}s`}} />
-                        {index > 0 && <rect className="torsoRect" x={lumpLocation(index).x+lumpSize/3} y={lumpLocation(index).y-(lumpSize/5)} width={lumpSize/3} height={lumpSize/3} rx={"5%"} style={{ animationDelay: `${index*0.5}s`}} />}
+                        <rect className="torsoRect" x={lumpLocation(index).x} y={lumpLocation(index).y} width={lumpSize} height={lumpSize-5} rx={"5%"} style={{animationDelay: `${(index+1)*200}ms`}} />
+                        {index > 0 && <rect className="torsoRect" x={lumpLocation(index).x+lumpSize/4} y={lumpLocation(index).y-(lumpSize/6)} width={lumpSize/2} height={lumpSize/3} style={{ animationDelay: `${(index-1)*200}ms`}} />}
                         </g>
                         )
                 })}
