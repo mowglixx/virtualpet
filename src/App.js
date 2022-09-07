@@ -13,7 +13,7 @@ const defaultPet = {
     year: 2000
   },
   health: 100,
-  aliveStatus: true, // alive = true
+  aliveStatus: false, // alive = true
   hunger: 100,
   moodDelta: 100,
   maxHunger: 100,
@@ -59,7 +59,7 @@ function App() {
 
     try {
 
-      if (pet.hasOwnProperty('name')) {
+      if (pet.aliveStatus) {
         let rand = Math.round(Math.random() * 3)
         // create a temporary pet for manipulation per tick
         let newPet = {...pet}
@@ -109,25 +109,13 @@ function App() {
   });
 
   const HandleDeath = (pet) => {
-    if (pet.aliveStatus === false || pet.health === 0) {
-      if (pet.name !== '') {
-        return (
-          <div className='flexCol'>
-            <p>Your pet, {pet.name}, Died!</p>
-            <NameChanger 
-              pet={defaultPet} 
-              setPet={setPet} />
-          </div>
-        )
-
-      } else {
+    if (pet.aliveStatus === false) {
         return (
           <div className='flexCol'>
             <NameChanger 
               pet={defaultPet} 
               setPet={setPet} />
           </div>)
-      }
     }
     return (
       <div className='flexCol'>
