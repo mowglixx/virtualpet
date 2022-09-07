@@ -44,8 +44,7 @@ function App() {
 
   const [achievements, updateAchievements] = useState(pet.achievements)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getAchievement = useCallback((key) => {
+  const getAchievement = useCallback(key => {
     if (achievements[key].complete === false) {
       let current = achievements
       current[key] = {
@@ -54,7 +53,7 @@ function App() {
       }
       updateAchievements(current)
     }
-  })
+  }, [achievements])
 
   const tickEvents = () => {
 
@@ -63,7 +62,7 @@ function App() {
       if (pet.hasOwnProperty('name')) {
         let rand = Math.round(Math.random() * 3)
         // create a temporary pet for manipulation per tick
-        let newPet = pet
+        let newPet = {...pet}
         // pause the tick effects if the pet is nameless
         if (newPet.name !== '') {
           if (newPet.hunger > 0 & newPet.health > 0) {
