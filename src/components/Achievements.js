@@ -1,12 +1,11 @@
 
 // function to init achievemnts state for App when pet is created
-export const ACHIEVEMENTS = () => {
-    return ({
+export const ACHIEVEMENTS = {
         start: {
             icon: '🏆',
             achievement: 'Here we go!',
             message: 'You made a Virtual pet, in this economy?!',
-            complete: true,
+            complete: false,
         },
         hungry: {
             icon: '🍽️',
@@ -62,8 +61,7 @@ export const ACHIEVEMENTS = () => {
             message: 'You didn\'t kill your pet, yay?',
             complete: false,
         },
-    })
-}
+    }
 
 const Achievement = ({ icon, message, achievement }) => {
 
@@ -90,7 +88,7 @@ const Achievement = ({ icon, message, achievement }) => {
 
 export const Achievements = ({ achievements }) => {
 
-    const getDemCheeves = () => {
+    const getDemCheeves = (achievements) => {
         let elements = [];
         const cheeves = [...Object.keys(achievements)]
             .filter(item => achievements[item].complete === true)
@@ -106,7 +104,7 @@ export const Achievements = ({ achievements }) => {
             <h2 style={{ fontSize: '1.2em', color: 'var(--gameBoyBlue)' }}>Achievements</h2>
             <div className='achievementsList'>
                 {/* cleanAchievments™️ */}
-                {getDemCheeves()}
+                {getDemCheeves(achievements)}
             </div>
         </div>
     )
