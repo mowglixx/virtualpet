@@ -2,7 +2,7 @@
 
 export const PetImg = ({ age }) => {
 
-    const lumps = age + 4
+    const lumps = age + 1
 
     const petBodyLumps = () => {
         let rangeOfLumps = []
